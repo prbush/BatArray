@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    stm32h7xx_it.c
-  * @brief   Interrupt Service Routines.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32h7xx_it.c
+ * @brief   Interrupt Service Routines.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -22,6 +22,7 @@
 #include "stm32h7xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "sdcard.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,7 +42,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+uint32_t semaphore_irq_counter = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,29 +66,29 @@ extern SD_HandleTypeDef hsd2;
 /*           Cortex Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
-  * @brief This function handles Non maskable interrupt.
-  */
-void NMI_Handler(void)
+ * @brief This function handles Non maskable interrupt.
+ */
+void NMI_Handler ( void )
 {
   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-   while (1)
+  while ( 1 )
   {
   }
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
 /**
-  * @brief This function handles Hard fault interrupt.
-  */
-void HardFault_Handler(void)
+ * @brief This function handles Hard fault interrupt.
+ */
+void HardFault_Handler ( void )
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
 
   /* USER CODE END HardFault_IRQn 0 */
-  while (1)
+  while ( 1 )
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
     /* USER CODE END W1_HardFault_IRQn 0 */
@@ -95,14 +96,14 @@ void HardFault_Handler(void)
 }
 
 /**
-  * @brief This function handles Memory management fault.
-  */
-void MemManage_Handler(void)
+ * @brief This function handles Memory management fault.
+ */
+void MemManage_Handler ( void )
 {
   /* USER CODE BEGIN MemoryManagement_IRQn 0 */
 
   /* USER CODE END MemoryManagement_IRQn 0 */
-  while (1)
+  while ( 1 )
   {
     /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
     /* USER CODE END W1_MemoryManagement_IRQn 0 */
@@ -110,14 +111,14 @@ void MemManage_Handler(void)
 }
 
 /**
-  * @brief This function handles Pre-fetch fault, memory access fault.
-  */
-void BusFault_Handler(void)
+ * @brief This function handles Pre-fetch fault, memory access fault.
+ */
+void BusFault_Handler ( void )
 {
   /* USER CODE BEGIN BusFault_IRQn 0 */
 
   /* USER CODE END BusFault_IRQn 0 */
-  while (1)
+  while ( 1 )
   {
     /* USER CODE BEGIN W1_BusFault_IRQn 0 */
     /* USER CODE END W1_BusFault_IRQn 0 */
@@ -125,14 +126,14 @@ void BusFault_Handler(void)
 }
 
 /**
-  * @brief This function handles Undefined instruction or illegal state.
-  */
-void UsageFault_Handler(void)
+ * @brief This function handles Undefined instruction or illegal state.
+ */
+void UsageFault_Handler ( void )
 {
   /* USER CODE BEGIN UsageFault_IRQn 0 */
 
   /* USER CODE END UsageFault_IRQn 0 */
-  while (1)
+  while ( 1 )
   {
     /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
     /* USER CODE END W1_UsageFault_IRQn 0 */
@@ -140,9 +141,9 @@ void UsageFault_Handler(void)
 }
 
 /**
-  * @brief This function handles System service call via SWI instruction.
-  */
-void SVC_Handler(void)
+ * @brief This function handles System service call via SWI instruction.
+ */
+void SVC_Handler ( void )
 {
   /* USER CODE BEGIN SVCall_IRQn 0 */
 
@@ -153,9 +154,9 @@ void SVC_Handler(void)
 }
 
 /**
-  * @brief This function handles Debug monitor.
-  */
-void DebugMon_Handler(void)
+ * @brief This function handles Debug monitor.
+ */
+void DebugMon_Handler ( void )
 {
   /* USER CODE BEGIN DebugMonitor_IRQn 0 */
 
@@ -166,9 +167,9 @@ void DebugMon_Handler(void)
 }
 
 /**
-  * @brief This function handles Pendable request for system service.
-  */
-void PendSV_Handler(void)
+ * @brief This function handles Pendable request for system service.
+ */
+void PendSV_Handler ( void )
 {
   /* USER CODE BEGIN PendSV_IRQn 0 */
 
@@ -179,14 +180,14 @@ void PendSV_Handler(void)
 }
 
 /**
-  * @brief This function handles System tick timer.
-  */
-void SysTick_Handler(void)
+ * @brief This function handles System tick timer.
+ */
+void SysTick_Handler ( void )
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
+  HAL_IncTick ();
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
@@ -200,47 +201,76 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles RTC alarms (A and B) interrupt through EXTI line 17.
-  */
-void RTC_Alarm_IRQHandler(void)
+ * @brief This function handles RTC alarms (A and B) interrupt through EXTI line 17.
+ */
+void RTC_Alarm_IRQHandler ( void )
 {
   /* USER CODE BEGIN RTC_Alarm_IRQn 0 */
 
   /* USER CODE END RTC_Alarm_IRQn 0 */
-  HAL_RTC_AlarmIRQHandler(&hrtc);
+  HAL_RTC_AlarmIRQHandler (&hrtc);
   /* USER CODE BEGIN RTC_Alarm_IRQn 1 */
 
   /* USER CODE END RTC_Alarm_IRQn 1 */
 }
 
 /**
-  * @brief This function handles SDMMC2 global interrupt.
-  */
-void SDMMC2_IRQHandler(void)
+ * @brief This function handles SDMMC2 global interrupt.
+ */
+void SDMMC2_IRQHandler ( void )
 {
   /* USER CODE BEGIN SDMMC2_IRQn 0 */
 
   /* USER CODE END SDMMC2_IRQn 0 */
-  HAL_SD_IRQHandler(&hsd2);
+  HAL_SD_IRQHandler (&hsd2);
   /* USER CODE BEGIN SDMMC2_IRQn 1 */
 
   /* USER CODE END SDMMC2_IRQn 1 */
 }
 
 /**
-  * @brief This function handles HSEM2 global interrupt.
-  */
-void HSEM2_IRQHandler(void)
+ * @brief This function handles HSEM2 global interrupt.
+ */
+void HSEM2_IRQHandler ( void )
 {
   /* USER CODE BEGIN HSEM2_IRQn 0 */
 
   /* USER CODE END HSEM2_IRQn 0 */
-  HAL_HSEM_IRQHandler();
+  HAL_HSEM_IRQHandler ();
   /* USER CODE BEGIN HSEM2_IRQn 1 */
 
   /* USER CODE END HSEM2_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
+/**
+ * @brief Semaphore Released Callback.
+ * @param SemMask: Mask of Released semaphores
+ * @retval None
+ */
+void HAL_HSEM_FreeCallback ( uint32_t SemMask )
+{
+  if ( SemMask == __HAL_HSEM_SEMID_TO_MASK(BUFFER_1_FULL_SEMAPHORE) )
+  {
+    ready_to_write = true;
 
+    semaphore_irq_counter++;
+
+    buffer_select = 0;
+
+    HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_1_FULL_SEMAPHORE));
+  }
+  else if ( SemMask == __HAL_HSEM_SEMID_TO_MASK(BUFFER_2_FULL_SEMAPHORE) )
+  {
+
+    ready_to_write = true;
+
+    semaphore_irq_counter++;
+
+    buffer_select = 1;
+
+    HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_2_FULL_SEMAPHORE));
+  }
+
+}
 /* USER CODE END 1 */

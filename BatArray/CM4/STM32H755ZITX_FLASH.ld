@@ -44,7 +44,8 @@ _Min_Stack_Size = 0x400; /* required amount of stack */
 MEMORY
 {
 FLASH (rx)     : ORIGIN = 0x08100000, LENGTH = 1024K
-RAM (xrw)      : ORIGIN = 0x10000000, LENGTH = 288K
+ADC_BUFFER (rw): ORIGIN = 0x10000000, LENGTH = 256K
+RAM (xrw)      : ORIGIN = 0x10000000 + 256K, LENGTH = 288K - 256K
 }
 
 /* Define output sections */
@@ -161,7 +162,10 @@ SECTIONS
     . = ALIGN(8);
   } >RAM
 
-
+  .ADC_BUFFER_sec (NOLOAD) :
+  {
+    *(.ADC_BUFFER_section) 
+  } >ADC_BUFFER
 
   /* Remove information from the standard libraries */
   /DISCARD/ :

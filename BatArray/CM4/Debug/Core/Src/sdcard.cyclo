@@ -1,0 +1,6 @@
+../Core/Src/sdcard.c:28:6:sdcard_mount	2
+../Core/Src/sdcard.c:41:6:sdcard_shutdown	1
+../Core/Src/sdcard.c:48:6:sdcard_allocate_files	4
+../Core/Src/sdcard.c:78:6:sdcard_write_to_file	7
+../Core/Src/sdcard.c:141:17:get_file_size	1
+../Core/Src/sdcard.c:150:17:get_max_writes_per_file	1

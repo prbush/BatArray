@@ -45,9 +45,10 @@ _Min_Stack_Size = 0x400; /* required amount of stack */
 MEMORY
 {
   RAM_D1 (xrw)   : ORIGIN = 0x24000000, LENGTH =  512K
-  FLASH   (rx)   : ORIGIN = 0x08000000, LENGTH = 1024K    /* Memory is divided. Actual start is 0x08000000 and actual length is 2048K */
+  FLASH  (rx)    : ORIGIN = 0x08000000, LENGTH = 1024K    /* Memory is divided. Actual start is 0x08000000 and actual length is 2048K */
   DTCMRAM (xrw)  : ORIGIN = 0x20000000, LENGTH = 128K
-  RAM_D2 (xrw)   : ORIGIN = 0x30000000, LENGTH = 288K
+  ADC_BUFFER (rw): ORIGIN = 0x30000000, LENGTH = 256K
+  RAM_D2 (xrw)   : ORIGIN = 0x30000000 + 256K, LENGTH = 288K - 256K
   RAM_D3 (xrw)   : ORIGIN = 0x38000000, LENGTH = 64K
   ITCMRAM (xrw)  : ORIGIN = 0x00000000, LENGTH = 64K
 }
@@ -176,6 +177,26 @@ SECTIONS
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
   } >RAM_D1
+  
+    .DTCMRAM_sec :
+  {
+    *(.DTCMRAM_section) 
+  } >DTCMRAM
+  
+  .ADC_BUFFER_sec (NOLOAD) :
+  {
+    *(.ADC_BUFFER_section) 
+  } >ADC_BUFFER
+  
+  .RAM_D2_sec :
+  {
+    *(.RAM_D2_section)
+  } >RAM_D2
+  
+  .RAM_D3_sec :
+  {
+    *(.RAM_D3_section)
+  } >RAM_D3
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :

@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    gpio.c
-  * @brief   This file provides code for the configuration
-  *          of all used GPIO pins.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    gpio.c
+ * @brief   This file provides code for the configuration
+ *          of all used GPIO pins.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -33,8 +33,8 @@
 /* USER CODE END 1 */
 
 /** Pinout Configuration
-*/
-void MX_GPIO_Init(void)
+ */
+void MX_GPIO_Init ( void )
 {
 
   /* GPIO Ports Clock Enable */
@@ -44,5 +44,37 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
+void supplemental_gpio_init ( void )
+{
+  GPIO_InitTypeDef GPIO_InitStruct =
+    { 0 };
+  /*Configure GPIO pin : Green LED --> PB0, Red LED --> PB14 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0 | GPIO_PIN_14;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init (GPIOB, &GPIO_InitStruct);
 
+  green_led_off ();
+  red_led_off ();
+}
+
+void green_led_on ( void )
+{
+  HAL_GPIO_WritePin (GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
+}
+
+void green_led_off ( void )
+{
+  HAL_GPIO_WritePin (GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
+}
+
+void red_led_on ( void )
+{
+  HAL_GPIO_WritePin (GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+}
+
+void red_led_off ( void )
+{
+  HAL_GPIO_WritePin (GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+}
 /* USER CODE END 2 */
