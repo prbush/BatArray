@@ -33,23 +33,44 @@
 /* USER CODE END 1 */
 
 /** Configure pins
- */
-void MX_GPIO_Init ( void )
+     PB15   ------> SDMMC2_D1
+     PD6   ------> SDMMC2_CK
+     PD7   ------> SDMMC2_CMD
+     PB3 (JTDO/TRACESWO)   ------> SDMMC2_D2
+     PB4 (NJTRST)   ------> SDMMC2_D3
+*/
+void MX_GPIO_Init(void)
 {
 
-  GPIO_InitTypeDef GPIO_InitStruct =
-    { 0 };
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
 
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = SDMMC_CD_Pin;
+  /*Configure GPIO pins : PB15 PB3 PB4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_15|GPIO_PIN_3|GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF9_SDIO2;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PD6 PD7 */
+  GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF11_SDIO2;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PG10 */
+  GPIO_InitStruct.Pin = GPIO_PIN_10;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init (SDMMC_CD_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
 }
 

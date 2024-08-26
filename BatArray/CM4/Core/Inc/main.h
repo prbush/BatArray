@@ -56,27 +56,13 @@ extern bool done;
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler ( void );
+void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define SD_D0_Pin GPIO_PIN_14
-#define SD_D0_GPIO_Port GPIOB
-#define SD_D1_Pin GPIO_PIN_15
-#define SD_D1_GPIO_Port GPIOB
-#define SD_CK_Pin GPIO_PIN_6
-#define SD_CK_GPIO_Port GPIOD
-#define SD_CMD_Pin GPIO_PIN_7
-#define SD_CMD_GPIO_Port GPIOD
-#define SDMMC_CD_Pin GPIO_PIN_10
-#define SDMMC_CD_GPIO_Port GPIOG
-#define SD_D2_Pin GPIO_PIN_3
-#define SD_D2_GPIO_Port GPIOB
-#define SD_D3_Pin GPIO_PIN_4
-#define SD_D3_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 #define SDMMC_CD_Pin GPIO_PIN_10

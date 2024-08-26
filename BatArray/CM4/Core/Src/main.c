@@ -18,9 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "fatfs.h"
 #include "rtc.h"
-#include "sdmmc.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -112,9 +111,8 @@ int main ( void )
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init ();
-  MX_FATFS_Init ();
   MX_RTC_Init ();
-  MX_SDMMC2_SD_Init ();
+  MX_UART4_Init ();
   /* USER CODE BEGIN 2 */
 
   if ( !sdcard_mount () )
@@ -122,10 +120,23 @@ int main ( void )
     Error_Handler ();
   }
 
+  /*
+   * Create a bookkeeping file:
+   * Put start/ stop times
+   * Total number of samples
+   * Other things?
+   */
+
   if ( !sdcard_allocate_files () )
   {
     Error_Handler ();
   }
+
+  /*
+   * Initialize GNSS
+   * Send config
+   * Wait until time has been resolved -> record start time
+   */
 
   HAL_HSEM_Release (M4_READY_SEMAPHORE, 0);
 
@@ -144,6 +155,11 @@ int main ( void )
       }
     }
   }
+
+  /*
+   * Get stop time
+   * Write start and stop time to files?
+   */
 
   sdcard_shutdown ();
 
