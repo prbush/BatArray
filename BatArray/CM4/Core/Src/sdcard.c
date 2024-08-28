@@ -16,7 +16,7 @@ FIL start_stop_times_file;
 uint32_t writes_counter = 0;
 uint32_t file_array_index = 0;
 uint32_t buffer_select = 0;
-__attribute__((section(".ADC_BUFFER_sec")))           ad7606c_data_buffer data_buffer;
+__attribute__((section(".ADC_BUFFER_sec")))               ad7606c_data_buffer data_buffer;
 
 uint32_t error_line = 0;
 FRESULT error_result = FR_OK;
@@ -42,14 +42,31 @@ bool sdcard_mount ( void )
   return f_mount (&SDFatFS, "", 1) == FR_OK;
 }
 
-bool sdcard_write_start_stop_times ( time_t start, time_t stop )
+bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop )
 {
   FRESULT res;
   UINT bytes_written = 0;
-  uint8_t buffer[sizeof(time_t) * 2];
+  uint8_t buffer[512] =
+    { 0 };
+  size_t bytes_required = 0;
+  size_t buf_index = 0;
 
-  memcpy (&buffer[0], &start, sizeof(time_t));
-  memcpy (&buffer[sizeof(time_t)], &stop, sizeof(time_t));
+  bytes_required = strftime (&(buffer[0]), sizeof(buffer), "Start time: %c\n", start);
+  if ( bytes_required > sizeof(buffer) )
+  {
+    error_line = 54;
+    return false;
+  }
+
+  buf_index = bytes_required + 1;
+
+  bytes_required = strftime (&(buffer[buf_index]), sizeof(buffer) - buf_index, "Stop time: %c\n",
+                             stop);
+  if ( bytes_required > (sizeof(buffer) - buf_index) )
+  {
+    error_line = 54;
+    return false;
+  }
 
   res = f_lseek (&start_stop_times_file, 0);
   if ( res != FR_OK )

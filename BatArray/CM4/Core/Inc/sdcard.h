@@ -28,6 +28,6 @@ bool sdcard_mount ( void );
 void sdcard_shutdown ( void );
 bool sdcard_allocate_files ( void );
 bool sdcard_write_to_file ( void );
-bool sdcard_write_start_stop_times ( time_t start, time_t stop );
+bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop );
 
 #endif /* INC_SDCARD_H_ */

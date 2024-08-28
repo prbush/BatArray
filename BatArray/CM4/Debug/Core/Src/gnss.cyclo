@@ -3,8 +3,8 @@
 ../Core/Src/gnss.c:101:6:gnss_sync	25
 ../Core/Src/gnss.c:165:13:gnss_reset_uart	1
 ../Core/Src/gnss.c:185:6:gnss_get_time	27
-../Core/Src/gnss.c:285:13:send_config	53
-../Core/Src/gnss.c:442:13:process_frame_sync_messages	5
-../Core/Src/gnss.c:493:17:get_two_bytes	2
-../Core/Src/gnss.c:509:6:HAL_UART_RxCpltCallback	1
-../Core/Src/gnss.c:514:6:HAL_UARTEx_RxEventCallback	1
+../Core/Src/gnss.c:282:13:send_config	53
+../Core/Src/gnss.c:439:13:process_frame_sync_messages	5
+../Core/Src/gnss.c:490:17:get_two_bytes	2
+../Core/Src/gnss.c:506:6:HAL_UART_RxCpltCallback	1
+../Core/Src/gnss.c:511:6:HAL_UARTEx_RxEventCallback	1

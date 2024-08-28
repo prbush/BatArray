@@ -96,6 +96,6 @@ typedef struct GNSS
 void gnss_init ( void );
 bool gnss_config ( void );
 bool gnss_sync ( void );
-bool gnss_get_time ( time_t *return_time );
+bool gnss_get_time ( struct tm *return_time );
 
 #endif /* SRC_GPS_H_ */

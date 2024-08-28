@@ -78,7 +78,7 @@ int main ( void )
   /* USER CODE BEGIN 1 */
   uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_sync_timeout = 60000,
       gnss_get_timeout = 60000;
-  time_t start_timestamp, stop_timestamp;
+  struct tm start_timestamp, stop_timestamp;
   /* USER CODE END 1 */
 
   /* USER CODE BEGIN Boot_Mode_Sequence_1 */
@@ -218,10 +218,28 @@ int main ( void )
     }
   }
 
-  /*
-   * Get stop time
-   * Write start and stop time to files?
-   */
+  start_time = HAL_GetTick ();
+  elapsed_time = 0;
+
+  while ( elapsed_time < gnss_get_timeout )
+  {
+    if ( gnss_get_time (&stop_timestamp) )
+    {
+      break;
+    }
+
+    elapsed_time = HAL_GetTick () - start_time;
+  }
+
+  if ( elapsed_time >= gnss_get_timeout )
+  {
+    Error_Handler ();
+  }
+
+  if ( !sdcard_write_start_stop_times (&start_timestamp, &stop_timestamp) )
+  {
+    Error_Handler ();
+  }
 
   sdcard_shutdown ();
 

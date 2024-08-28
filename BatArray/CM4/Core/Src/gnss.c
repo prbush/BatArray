@@ -182,9 +182,8 @@ static bool gnss_reset_uart ( void )
  * @return GNSS_SUCCESS or
  *                 GNSS_RTC_ERROR - if setting RTC returned an error
  */
-bool gnss_get_time ( time_t *return_time )
+bool gnss_get_time ( struct tm *return_time )
 {
-  struct tm time;
   uint16_t year;
   uint8_t month;
   uint8_t day;
@@ -259,14 +258,12 @@ bool gnss_get_time ( time_t *return_time )
       return false;
     }
 
-    time.tm_year = year;
-    time.tm_mon = month;
-    time.tm_mday = day;
-    time.tm_hour = hour;
-    time.tm_min = min;
-    time.tm_sec = sec;
-
-    *return_time = mktime (&time);
+    return_time->tm_year = year;
+    return_time->tm_mon = month;
+    return_time->tm_mday = day;
+    return_time->tm_hour = hour;
+    return_time->tm_min = min;
+    return_time->tm_sec = sec;
 
     return true;
   }
