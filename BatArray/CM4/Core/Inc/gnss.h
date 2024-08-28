@@ -12,31 +12,8 @@
 #include "configuration.h"
 #include "u_ubx_protocol.h"
 #include "time.h"
-
-// Return codes
-typedef enum gnss_error_code
-{
-  // Error/ success codes
-  GNSS_SUCCESS = 0,
-  GNSS_UNKNOWN_ERROR = -1,
-  GNSS_LOCATION_INVALID = -2,
-  GNSS_VELOCITY_INVALID = -3,
-  GNSS_NO_SAMPLES_ERROR = -4,
-  GNSS_TIMEOUT_ERROR = -5,
-  GNSS_BUSY_ERROR = -6,
-  GNSS_NO_MESSAGE_RECEIVED = -7,
-  GNSS_UART_ERROR = -8,
-  GNSS_CONFIG_ERROR = -9,
-  GNSS_SELF_TEST_FAILED = -10,
-  GNSS_MESSAGE_PROCESS_ERROR = -11,
-  GNSS_RTC_ERROR = -12,
-  GNSS_TIMER_ERROR = -13,
-  GNSS_TIME_RESOLUTION_ERROR = -14,
-  GNSS_FIRST_SAMPLE_RESOLUTION_ERROR = -15,
-  GNSS_NAK_MESSAGE_RECEIVED = -16,
-  GNSS_HIGH_PERFORMANCE_ENABLE_ERROR = -17,
-  GNSS_DONE_SAMPLING = -18
-} gnss_error_code_t;
+#include "stdbool.h"
+#include "usart.h"
 
 // Macros
 #define GNSS_CONFIG_BUFFER_SIZE 600
@@ -95,6 +72,12 @@ typedef enum gnss_error_code
 #define HIGH_PERFORMANCE_RESPONSE_SIZE 36
 #define ENABLE_HIGH_PERFORMANCE_SIZE 60
 
+typedef enum
+{
+  AS_LITTLE_ENDIAN = 0,
+  AS_BIG_ENDIAN = 1
+} endian_t;
+
 // GNSS struct definition -- packed for good organization, not memory efficiency
 typedef struct GNSS
 {
@@ -102,9 +85,17 @@ typedef struct GNSS
   time_t sample_window_start_time;
   // The start time for the sampling window
   time_t sample_window_stop_time;
+
+  uint32_t messages_processed;
+  uint32_t number_cycles_without_data;
+  uint32_t total_samples;
+  bool is_time_resolved;
 } GNSS;
 
 /* Function declarations */
-void gnss_init ( GNSS *struct_ptr, UART_HandleTypeDef *gnss_uart_handle );
+void gnss_init ( void );
+bool gnss_config ( void );
+bool gnss_sync ( void );
+bool gnss_get_time ( time_t *return_time );
 
 #endif /* SRC_GPS_H_ */

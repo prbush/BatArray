@@ -1,0 +1,9 @@
+../Core/Src/u_ubx_protocol.c:62:6:uUbxProtocolIsLittleEndian	1
+../Core/Src/u_ubx_protocol.c:70:10:uUbxProtocolUint16Decode	1
+../Core/Src/u_ubx_protocol.c:84:10:uUbxProtocolUint32Decode	1
+../Core/Src/u_ubx_protocol.c:100:10:uUbxProtocolUint64Decode	1
+../Core/Src/u_ubx_protocol.c:120:10:uUbxProtocolUint16Encode	2
+../Core/Src/u_ubx_protocol.c:134:10:uUbxProtocolUint32Encode	2
+../Core/Src/u_ubx_protocol.c:150:10:uUbxProtocolUint64Encode	2
+../Core/Src/u_ubx_protocol.c:170:9:uUbxProtocolEncode	6
+../Core/Src/u_ubx_protocol.c:218:9:uUbxProtocolDecode	24

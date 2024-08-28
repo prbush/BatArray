@@ -1,0 +1,9 @@
+../Core/Src/gnss.c:36:6:gnss_init	4	static
+../Core/Src/gnss.c:53:6:gnss_config	184	static
+../Core/Src/gnss.c:109:6:gnss_sync	536	static
+../Core/Src/gnss.c:172:13:gnss_reset_uart	8	static
+../Core/Src/gnss.c:218:6:gnss_get_time	240	dynamic
+../Core/Src/gnss.c:318:13:send_config	216	dynamic
+../Core/Src/gnss.c:445:13:process_frame_sync_messages	152	static
+../Core/Src/gnss.c:496:17:get_two_bytes	32	static
+../Core/Src/gnss.c:512:6:HAL_UART_RxCpltCallback	16	static

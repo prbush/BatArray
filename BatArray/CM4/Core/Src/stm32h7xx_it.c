@@ -56,7 +56,8 @@ uint32_t semaphore_irq_counter = 0;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern RTC_HandleTypeDef hrtc;
+extern UART_HandleTypeDef huart4;
+extern UART_HandleTypeDef huart6;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -200,17 +201,31 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles RTC alarms (A and B) interrupt through EXTI line 17.
+  * @brief This function handles UART4 global interrupt.
   */
-void RTC_Alarm_IRQHandler(void)
+void UART4_IRQHandler(void)
 {
-  /* USER CODE BEGIN RTC_Alarm_IRQn 0 */
+  /* USER CODE BEGIN UART4_IRQn 0 */
 
-  /* USER CODE END RTC_Alarm_IRQn 0 */
-  HAL_RTC_AlarmIRQHandler(&hrtc);
-  /* USER CODE BEGIN RTC_Alarm_IRQn 1 */
+  /* USER CODE END UART4_IRQn 0 */
+  HAL_UART_IRQHandler(&huart4);
+  /* USER CODE BEGIN UART4_IRQn 1 */
 
-  /* USER CODE END RTC_Alarm_IRQn 1 */
+  /* USER CODE END UART4_IRQn 1 */
+}
+
+/**
+  * @brief This function handles USART6 global interrupt.
+  */
+void USART6_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART6_IRQn 0 */
+
+  /* USER CODE END USART6_IRQn 0 */
+  HAL_UART_IRQHandler(&huart6);
+  /* USER CODE BEGIN USART6_IRQn 1 */
+
+  /* USER CODE END USART6_IRQn 1 */
 }
 
 /**
