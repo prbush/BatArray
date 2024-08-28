@@ -16,10 +16,8 @@ FIL start_stop_times_file;
 uint32_t writes_counter = 0;
 uint32_t file_array_index = 0;
 uint32_t buffer_select = 0;
-__attribute__((section(".ADC_BUFFER_sec")))               ad7606c_data_buffer data_buffer;
+__attribute__((section(".ADC_BUFFER_sec")))                 ad7606c_data_buffer data_buffer;
 
-uint32_t error_line = 0;
-FRESULT error_result = FR_OK;
 uint64_t seek_point = 0;
 uint32_t num_file_writes = 0;
 static uint8_t work[16384];
@@ -33,8 +31,6 @@ bool sdcard_mount ( void )
   // Format the card
   if ( f_mkfs ("", FM_EXFAT, CLUSTER_SIZE_SAMSUNG_512, &(work[0]), sizeof(work)) != FR_OK )
   {
-
-    error_line = 34;
     return false;
   }
 
@@ -46,7 +42,7 @@ bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop )
 {
   FRESULT res;
   UINT bytes_written = 0;
-  uint8_t buffer[512] =
+  char buffer[512] =
     { 0 };
   size_t bytes_required = 0;
   size_t buf_index = 0;
@@ -54,7 +50,6 @@ bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop )
   bytes_required = strftime (&(buffer[0]), sizeof(buffer), "Start time: %c\n", start);
   if ( bytes_required > sizeof(buffer) )
   {
-    error_line = 54;
     return false;
   }
 
@@ -64,16 +59,12 @@ bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop )
                              stop);
   if ( bytes_required > (sizeof(buffer) - buf_index) )
   {
-    error_line = 54;
     return false;
   }
 
   res = f_lseek (&start_stop_times_file, 0);
   if ( res != FR_OK )
   {
-    error_result = res;
-    error_line = 54;
-
     return false;
   }
 
@@ -82,17 +73,12 @@ bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop )
 
   if ( (res != FR_OK) || (bytes_written != RAW_VAL_BUFFER_SIZE) )
   {
-    error_result = res;
-    error_line = 63;
-
     return false;
   }
 
   res = f_close (&start_stop_times_file);
   if ( res != FR_OK )
   {
-    error_result = res;
-    error_line = 74;
     return false;
   }
 
@@ -117,17 +103,11 @@ bool sdcard_allocate_files ( void )
   res = f_open (&start_stop_times_file, filename_buffer, FA_CREATE_ALWAYS | FA_WRITE);
   if ( res != FR_OK )
   {
-    error_result = res;
-    error_line = 99;
-
     return false;
   }
   res = f_expand (&start_stop_times_file, 512, 1);
   if ( res != FR_OK )
   {
-    error_result = res;
-    error_line = 107;
-
     return false;
   }
 
@@ -139,18 +119,12 @@ bool sdcard_allocate_files ( void )
     res = f_open (&file_array[i], filename_buffer, FA_CREATE_ALWAYS | FA_WRITE);
     if ( res != FR_OK )
     {
-      error_result = res;
-      error_line = 121;
-
       return false;
     }
 
     res = f_expand (&file_array[i], expand_size, 1);
     if ( res != FR_OK )
     {
-      error_result = res;
-      error_line = 130;
-
       return false;
     }
   }
@@ -172,9 +146,6 @@ bool sdcard_write_to_file ( void )
 
   if ( (res != FR_OK) || (bytes_written != RAW_VAL_BUFFER_SIZE) )
   {
-    error_result = res;
-    error_line = 155;
-
     return false;
   }
 
@@ -190,9 +161,6 @@ bool sdcard_write_to_file ( void )
 
     if ( res != FR_OK )
     {
-      error_result = res;
-      error_line = 171;
-
       return false;
     }
 
@@ -214,9 +182,6 @@ bool sdcard_write_to_file ( void )
 
   if ( res != FR_OK )
   {
-    error_result = res;
-    error_line = 195;
-
     return false;
   }
 

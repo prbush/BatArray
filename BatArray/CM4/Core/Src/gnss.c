@@ -146,8 +146,12 @@ bool gnss_sync ( void )
     }
     else
     {
+      self.messages_processed = 0;
+      self.number_cycles_without_data = 0;
+      self.total_samples = 0;
+
       // Short delay to help get the frame sync'd
-      HAL_Delay (1);
+      HAL_Delay (13);
     }
   }
 
@@ -193,7 +197,7 @@ bool gnss_get_time ( struct tm *return_time )
   uint8_t time_flags;
   uint32_t buf_length = 500;
   uint8_t receive_buf[buf_length];
-  uint32_t uart_timeout = 1250, start_time = 0, elapsed_time = 0;
+  uint32_t uart_timeout = 250, start_time = 0, elapsed_time = 0;
   uint8_t payload[UBX_NAV_PVT_PAYLOAD_LENGTH];
   const char *buf_start = (const char*) &(receive_buf[0]);
   const char *buf_end = buf_start;
