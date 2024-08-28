@@ -33,11 +33,12 @@
 /* USER CODE END 1 */
 
 /** Configure pins
-*/
-void MX_GPIO_Init(void)
+ */
+void MX_GPIO_Init ( void )
 {
 
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  GPIO_InitTypeDef GPIO_InitStruct =
+    { 0 };
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -50,7 +51,7 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = SDMMC_CD_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(SDMMC_CD_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init (SDMMC_CD_GPIO_Port, &GPIO_InitStruct);
 
 }
 
@@ -71,21 +72,21 @@ void supplemental_gpio_init ( void )
 
 void green_led_on ( void )
 {
-  HAL_GPIO_WritePin (GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
+  HAL_GPIO_WritePin (GPIOD, GPIO_PIN_5, GPIO_PIN_SET);
 }
 
 void green_led_off ( void )
 {
-  HAL_GPIO_WritePin (GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin (GPIOD, GPIO_PIN_5, GPIO_PIN_RESET);
 }
 
 void red_led_on ( void )
 {
-  HAL_GPIO_WritePin (GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+  HAL_GPIO_WritePin (GPIOD, GPIO_PIN_4, GPIO_PIN_SET);
 }
 
 void red_led_off ( void )
 {
-  HAL_GPIO_WritePin (GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin (GPIOD, GPIO_PIN_4, GPIO_PIN_RESET);
 }
 /* USER CODE END 2 */

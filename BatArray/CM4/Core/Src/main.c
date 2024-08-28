@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "fatfs.h"
 #include "sdmmc.h"
 #include "usart.h"
@@ -75,7 +76,8 @@ int main ( void )
 {
 
   /* USER CODE BEGIN 1 */
-  uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_get_timeout = 60000;
+  uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_sync_timeout = 60000,
+      gnss_get_timeout = 60000;
   time_t start_timestamp, stop_timestamp;
   /* USER CODE END 1 */
 
@@ -104,6 +106,7 @@ int main ( void )
 
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_1_FULL_SEMAPHORE));
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_2_FULL_SEMAPHORE));
+  HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(ERROR_SEMAPHORE));
   /* USER CODE END Init */
 
   /* USER CODE BEGIN SysInit */
@@ -115,8 +118,11 @@ int main ( void )
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init ();
+  MX_DMA_Init ();
   MX_UART4_Init ();
+//  MX_SDMMC2_SD_Init();
   MX_USART6_UART_Init ();
+//  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
   gnss_init ();
@@ -141,7 +147,7 @@ int main ( void )
   start_time = HAL_GetTick ();
   elapsed_time = 0;
 
-  while ( elapsed_time < gnss_config_timeout )
+  while ( elapsed_time < gnss_sync_timeout )
   {
     if ( gnss_sync () )
     {
@@ -151,7 +157,7 @@ int main ( void )
     elapsed_time = HAL_GetTick () - start_time;
   }
 
-  if ( elapsed_time >= gnss_config_timeout )
+  if ( elapsed_time >= gnss_sync_timeout )
   {
     Error_Handler ();
   }
@@ -229,15 +235,13 @@ int main ( void )
   bool toggle = true;
   while ( 1 )
   {
-    HAL_Delay (250);
+    _main_busy_loop (5000000);
     if ( toggle )
     {
-      red_led_off ();
       green_led_on ();
     }
     else
     {
-      red_led_on ();
       green_led_off ();
     }
     toggle = !toggle;
@@ -275,7 +279,7 @@ void Error_Handler ( void )
 
   HAL_HSEM_Release (DONE_SEMAPHORE, 0);
 
-  __disable_irq ();
+  HAL_HSEM_FastTake (ERROR_SEMAPHORE);
 
   supplemental_gpio_init ();
 
@@ -285,7 +289,7 @@ void Error_Handler ( void )
 
   while ( 1 )
   {
-    HAL_Delay (250);
+    _main_busy_loop (5000000);
 
     if ( toggle )
     {

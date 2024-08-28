@@ -36,7 +36,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.h \
  ../Core/Inc/stm32h7xx_nucleo_conf.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo_errno.h \
- ../FATFS/App/fatfs.h \
+ ../Core/Inc/dma.h ../Core/Inc/main.h ../FATFS/App/fatfs.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/ff.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/integer.h \
  ../FATFS/Target/ffconf.h ../FATFS/Target/bsp_driver_sd.h \
@@ -44,8 +44,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/diskio.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/ff.h \
- ../FATFS/Target/sd_diskio.h ../Core/Inc/sdmmc.h ../Core/Inc/main.h \
- ../Core/Inc/usart.h ../Core/Inc/gpio.h ../Core/Inc/sdcard.h \
+ ../FATFS/Target/sd_diskio.h ../Core/Inc/sdmmc.h ../Core/Inc/usart.h \
+ ../Core/Inc/gpio.h ../Core/Inc/sdcard.h \
  /Users/philbush/STM32CubeIDE/workspace_1.14.0/BatArray/BatArray/Common/Inc/configuration.h \
  ../Core/Inc/gnss.h ../Core/Inc/u_ubx_protocol.h ../Core/Inc/usart.h
 ../Core/Inc/main.h:
@@ -86,6 +86,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.h:
 ../Core/Inc/stm32h7xx_nucleo_conf.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo_errno.h:
+../Core/Inc/dma.h:
+../Core/Inc/main.h:
 ../FATFS/App/fatfs.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/ff.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/integer.h:
@@ -97,7 +99,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/ff.h:
 ../FATFS/Target/sd_diskio.h:
 ../Core/Inc/sdmmc.h:
-../Core/Inc/main.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/sdcard.h:

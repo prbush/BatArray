@@ -1,6 +1,7 @@
-../Core/Src/sdcard.c:28:6:sdcard_mount	16400	static
-../Core/Src/sdcard.c:41:6:sdcard_shutdown	8	static
-../Core/Src/sdcard.c:48:6:sdcard_allocate_files	72	static
-../Core/Src/sdcard.c:78:6:sdcard_write_to_file	32	static
-../Core/Src/sdcard.c:141:17:get_file_size	24	static
-../Core/Src/sdcard.c:150:17:get_max_writes_per_file	8	static
+../Core/Src/sdcard.c:30:6:sdcard_mount	16400	static
+../Core/Src/sdcard.c:45:6:sdcard_write_start_stop_times	48	static
+../Core/Src/sdcard.c:85:6:sdcard_shutdown	8	static
+../Core/Src/sdcard.c:91:6:sdcard_allocate_files	72	static
+../Core/Src/sdcard.c:146:6:sdcard_write_to_file	32	static
+../Core/Src/sdcard.c:209:17:get_file_size	24	static
+../Core/Src/sdcard.c:218:17:get_max_writes_per_file	8	static

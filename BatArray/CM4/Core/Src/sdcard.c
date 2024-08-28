@@ -6,21 +6,23 @@
  */
 
 #include "sdcard.h"
-#include "stdio.h" // snprintf
+#include "string.h"
 #include "main.h"
 #include "sdmmc.h"
 #include "configuration.h"
 
 FIL file_array[NUMBER_OF_FILES];
+FIL start_stop_times_file;
 uint32_t writes_counter = 0;
 uint32_t file_array_index = 0;
 uint32_t buffer_select = 0;
-__attribute__((section(".ADC_BUFFER_sec")))                                   ad7606c_data_buffer data_buffer;
+__attribute__((section(".ADC_BUFFER_sec")))           ad7606c_data_buffer data_buffer;
 
 uint32_t error_line = 0;
 FRESULT error_result = FR_OK;
 uint64_t seek_point = 0;
 uint32_t num_file_writes = 0;
+static uint8_t work[16384];
 
 static uint64_t get_file_size ( void );
 static uint32_t get_max_writes_per_file ( void );
@@ -29,8 +31,10 @@ bool sdcard_mount ( void )
 {
   uint8_t work[16384];
   // Format the card
-  if ( f_mkfs ("", FM_EXFAT, CLUSTER_SIZE_SAMSUNG_512, work, sizeof(work)) != FR_OK )
+  if ( f_mkfs ("", FM_EXFAT, CLUSTER_SIZE_SAMSUNG_512, &(work[0]), sizeof(work)) != FR_OK )
   {
+
+    error_line = 34;
     return false;
   }
 
@@ -38,9 +42,48 @@ bool sdcard_mount ( void )
   return f_mount (&SDFatFS, "", 1) == FR_OK;
 }
 
+bool sdcard_write_start_stop_times ( time_t start, time_t stop )
+{
+  FRESULT res;
+  UINT bytes_written = 0;
+  uint8_t buffer[sizeof(time_t) * 2];
+
+  memcpy (&buffer[0], &start, sizeof(time_t));
+  memcpy (&buffer[sizeof(time_t)], &stop, sizeof(time_t));
+
+  res = f_lseek (&start_stop_times_file, 0);
+  if ( res != FR_OK )
+  {
+    error_result = res;
+    error_line = 54;
+
+    return false;
+  }
+
+  res = f_write (&start_stop_times_file, (const void*) &(buffer[0]), sizeof(buffer),
+                 &bytes_written);
+
+  if ( (res != FR_OK) || (bytes_written != RAW_VAL_BUFFER_SIZE) )
+  {
+    error_result = res;
+    error_line = 63;
+
+    return false;
+  }
+
+  res = f_close (&start_stop_times_file);
+  if ( res != FR_OK )
+  {
+    error_result = res;
+    error_line = 74;
+    return false;
+  }
+
+  return true;
+}
+
 void sdcard_shutdown ( void )
 {
-
   // Deinit SDMMC2
   (void) HAL_SD_DeInit (&hsd2);
 }
@@ -52,6 +95,25 @@ bool sdcard_allocate_files ( void )
   uint64_t expand_size = get_file_size ();
   char filename_buffer[32];
 
+  // Bookeeping file
+  snprintf (filename_buffer, 32, "Start_Stop_Times");
+  res = f_open (&start_stop_times_file, filename_buffer, FA_CREATE_ALWAYS | FA_WRITE);
+  if ( res != FR_OK )
+  {
+    error_result = res;
+    error_line = 99;
+
+    return false;
+  }
+  res = f_expand (&start_stop_times_file, 512, 1);
+  if ( res != FR_OK )
+  {
+    error_result = res;
+    error_line = 107;
+
+    return false;
+  }
+
   // Create the 12 hourly files
   for ( int i = 0; i < NUMBER_OF_FILES; i++ )
   {
@@ -60,12 +122,18 @@ bool sdcard_allocate_files ( void )
     res = f_open (&file_array[i], filename_buffer, FA_CREATE_ALWAYS | FA_WRITE);
     if ( res != FR_OK )
     {
+      error_result = res;
+      error_line = 121;
+
       return false;
     }
 
     res = f_expand (&file_array[i], expand_size, 1);
     if ( res != FR_OK )
     {
+      error_result = res;
+      error_line = 130;
+
       return false;
     }
   }
@@ -88,7 +156,7 @@ bool sdcard_write_to_file ( void )
   if ( (res != FR_OK) || (bytes_written != RAW_VAL_BUFFER_SIZE) )
   {
     error_result = res;
-    error_line = 65;
+    error_line = 155;
 
     return false;
   }
@@ -106,7 +174,7 @@ bool sdcard_write_to_file ( void )
     if ( res != FR_OK )
     {
       error_result = res;
-      error_line = 84;
+      error_line = 171;
 
       return false;
     }
@@ -130,7 +198,7 @@ bool sdcard_write_to_file ( void )
   if ( res != FR_OK )
   {
     error_result = res;
-    error_line = 106;
+    error_line = 195;
 
     return false;
   }

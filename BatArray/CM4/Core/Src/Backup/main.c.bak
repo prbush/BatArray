@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "fatfs.h"
 #include "sdmmc.h"
 #include "usart.h"
@@ -75,7 +76,8 @@ int main ( void )
 {
 
   /* USER CODE BEGIN 1 */
-  uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_get_timeout = 60000;
+  uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_sync_timeout = 60000,
+      gnss_get_timeout = 60000;
   time_t start_timestamp, stop_timestamp;
   /* USER CODE END 1 */
 
@@ -115,6 +117,7 @@ int main ( void )
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init ();
+  MX_DMA_Init ();
   MX_UART4_Init ();
   MX_USART6_UART_Init ();
   /* USER CODE BEGIN 2 */
@@ -141,7 +144,7 @@ int main ( void )
   start_time = HAL_GetTick ();
   elapsed_time = 0;
 
-  while ( elapsed_time < gnss_config_timeout )
+  while ( elapsed_time < gnss_sync_timeout )
   {
     if ( gnss_sync () )
     {
@@ -151,7 +154,7 @@ int main ( void )
     elapsed_time = HAL_GetTick () - start_time;
   }
 
-  if ( elapsed_time >= gnss_config_timeout )
+  if ( elapsed_time >= gnss_sync_timeout )
   {
     Error_Handler ();
   }

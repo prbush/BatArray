@@ -10,6 +10,7 @@
 
 #include "fatfs.h"
 #include "stdbool.h"
+#include "time.h"
 
 extern uint32_t file_array_index;
 extern uint32_t buffer_select;
@@ -27,5 +28,6 @@ bool sdcard_mount ( void );
 void sdcard_shutdown ( void );
 bool sdcard_allocate_files ( void );
 bool sdcard_write_to_file ( void );
+bool sdcard_write_start_stop_times ( time_t start, time_t stop );
 
 #endif /* INC_SDCARD_H_ */
