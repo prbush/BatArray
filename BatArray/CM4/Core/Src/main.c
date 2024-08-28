@@ -77,12 +77,11 @@ int main ( void )
 
   /* USER CODE BEGIN 1 */
   uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_sync_timeout = 60000,
-      gnss_get_timeout = 60000;
+      gnss_get_timeout = 120000;
   struct tm start_timestamp, stop_timestamp;
   /* USER CODE END 1 */
 
   /* USER CODE BEGIN Boot_Mode_Sequence_1 */
-#ifndef DEBUG_CM4_STANDALONE
   /*HW semaphore Clock enable*/
   __HAL_RCC_HSEM_CLK_ENABLE();
   /* Activate HSEM notification for Cortex-M4*/
@@ -95,7 +94,6 @@ int main ( void )
   HAL_PWREx_EnterSTOPMode (PWR_MAINREGULATOR_ON, PWR_STOPENTRY_WFE, PWR_D2_DOMAIN);
   /* Clear HSEM flag */
   __HAL_HSEM_CLEAR_FLAG(__HAL_HSEM_SEMID_TO_MASK(HSEM_ID_0));
-#endif // #ifndef DEBUG_CM4_STANDALONE
   /* USER CODE END Boot_Mode_Sequence_1 */
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -297,7 +295,17 @@ void Error_Handler ( void )
 
   HAL_HSEM_Release (DONE_SEMAPHORE, 0);
 
-  HAL_HSEM_FastTake (ERROR_SEMAPHORE);
+  if ( HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
+  {
+    HAL_HSEM_FastTake (ERROR_SEMAPHORE);
+  }
+  else
+  {
+    while ( 1 )
+    {
+      _main_busy_loop (1);
+    }
+  }
 
   supplemental_gpio_init ();
 

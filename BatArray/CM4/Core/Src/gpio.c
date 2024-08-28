@@ -60,11 +60,11 @@ void supplemental_gpio_init ( void )
 {
   GPIO_InitTypeDef GPIO_InitStruct =
     { 0 };
-  /*Configure GPIO pin : Green LED --> PB0, Red LED --> PB14 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0 | GPIO_PIN_14;
+  /*Configure GPIO pin : Green LED --> PD5, Red LED --> PD4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5 | GPIO_PIN_4;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init (GPIOB, &GPIO_InitStruct);
+  HAL_GPIO_Init (GPIOD, &GPIO_InitStruct);
 
   green_led_off ();
   red_led_off ();

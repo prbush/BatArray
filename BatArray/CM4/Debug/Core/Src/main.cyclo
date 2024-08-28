@@ -1,4 +1,4 @@
 ../Core/Src/main.c:75:5:main	21
-../Core/Src/main.c:274:13:_main_busy_loop	2
-../Core/Src/main.c:291:6:Error_Handler	2
-../Core/Src/main.c:334:6:assert_failed	1
+../Core/Src/main.c:272:13:_main_busy_loop	2
+../Core/Src/main.c:289:6:Error_Handler	3
+../Core/Src/main.c:342:6:assert_failed	1

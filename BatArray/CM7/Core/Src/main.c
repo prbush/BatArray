@@ -274,7 +274,17 @@ void Error_Handler ( void )
   /* User can add his own implementation to report the HAL error return state */
   ad7606c_shutdown ();
 
-  HAL_HSEM_FastTake (ERROR_SEMAPHORE);
+  if ( HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
+  {
+    HAL_HSEM_FastTake (ERROR_SEMAPHORE);
+  }
+  else
+  {
+    while ( 1 )
+    {
+      _main_busy_loop (1);
+    }
+  }
 
   supplemental_gpio_init ();
 

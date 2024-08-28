@@ -2,4 +2,4 @@
 ../Core/Src/main.c:195:6:SystemClock_Config	120	static
 ../Core/Src/main.c:254:13:_main_busy_loop	24	static
 ../Core/Src/main.c:271:6:Error_Handler	16	static
-../Core/Src/main.c:311:6:assert_failed	16	static
+../Core/Src/main.c:321:6:assert_failed	16	static
