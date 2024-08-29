@@ -197,7 +197,7 @@ bool gnss_get_time ( struct tm *return_time )
   uint8_t time_flags;
   static uint32_t buf_length = 200;
   uint8_t receive_buf[buf_length];
-  uint32_t uart_timeout = 250, start_time = 0, elapsed_time = 0;
+  uint32_t uart_timeout = 500, start_time = 0, elapsed_time = 0;
   uint8_t payload[UBX_NAV_PVT_PAYLOAD_LENGTH];
   const char *buf_start = (const char*) &(receive_buf[0]);
   const char *buf_end = buf_start;
