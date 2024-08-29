@@ -246,7 +246,7 @@ bool gnss_get_time ( struct tm *return_time )
       continue;
     }
 
-    year = (int16_t) get_two_bytes (&(payload[0]), UBX_NAV_PVT_YEAR_INDEX, AS_LITTLE_ENDIAN);
+    year = payload[UBX_NAV_PVT_YEAR_INDEX] + (payload[UBX_NAV_PVT_YEAR_INDEX + 1] << 8);
     month = payload[UBX_NAV_PVT_MONTH_INDEX];
     day = payload[UBX_NAV_PVT_DAY_INDEX];
     hour = payload[UBX_NAV_PVT_HOUR_INDEX];
@@ -262,8 +262,8 @@ bool gnss_get_time ( struct tm *return_time )
       return false;
     }
 
-    return_time->tm_year = year;
-    return_time->tm_mon = month;
+    return_time->tm_year = year - 1900;
+    return_time->tm_mon = month - 1;
     return_time->tm_mday = day;
     return_time->tm_hour = hour;
     return_time->tm_min = min;

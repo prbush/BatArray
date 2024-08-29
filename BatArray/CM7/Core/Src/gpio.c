@@ -33,8 +33,8 @@
 /* USER CODE END 1 */
 
 /** Pinout Configuration
- */
-void MX_GPIO_Init ( void )
+*/
+void MX_GPIO_Init(void)
 {
 
   /* GPIO Ports Clock Enable */

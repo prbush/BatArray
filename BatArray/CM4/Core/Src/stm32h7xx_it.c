@@ -56,9 +56,9 @@ uint32_t semaphore_irq_counter = 0;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern SD_HandleTypeDef hsd2;
 extern DMA_HandleTypeDef hdma_uart4_rx;
 extern UART_HandleTypeDef huart4;
-extern UART_HandleTypeDef huart6;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -77,6 +77,7 @@ void NMI_Handler ( void )
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
   while ( 1 )
   {
+    Error_Handler ();
   }
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
@@ -92,6 +93,7 @@ void HardFault_Handler ( void )
   while ( 1 )
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+    Error_Handler ();
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }
@@ -107,6 +109,7 @@ void MemManage_Handler ( void )
   while ( 1 )
   {
     /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+    Error_Handler ();
     /* USER CODE END W1_MemoryManagement_IRQn 0 */
   }
 }
@@ -122,6 +125,7 @@ void BusFault_Handler ( void )
   while ( 1 )
   {
     /* USER CODE BEGIN W1_BusFault_IRQn 0 */
+    Error_Handler ();
     /* USER CODE END W1_BusFault_IRQn 0 */
   }
 }
@@ -137,6 +141,7 @@ void UsageFault_Handler ( void )
   while ( 1 )
   {
     /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
+    Error_Handler ();
     /* USER CODE END W1_UsageFault_IRQn 0 */
   }
 }
@@ -230,17 +235,17 @@ void UART4_IRQHandler ( void )
 }
 
 /**
- * @brief This function handles USART6 global interrupt.
+ * @brief This function handles SDMMC2 global interrupt.
  */
-void USART6_IRQHandler ( void )
+void SDMMC2_IRQHandler ( void )
 {
-  /* USER CODE BEGIN USART6_IRQn 0 */
+  /* USER CODE BEGIN SDMMC2_IRQn 0 */
 
-  /* USER CODE END USART6_IRQn 0 */
-  HAL_UART_IRQHandler (&huart6);
-  /* USER CODE BEGIN USART6_IRQn 1 */
+  /* USER CODE END SDMMC2_IRQn 0 */
+  HAL_SD_IRQHandler (&hsd2);
+  /* USER CODE BEGIN SDMMC2_IRQn 1 */
 
-  /* USER CODE END USART6_IRQn 1 */
+  /* USER CODE END SDMMC2_IRQn 1 */
 }
 
 /**

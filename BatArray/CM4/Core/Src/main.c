@@ -56,6 +56,9 @@
 /* USER CODE BEGIN PV */
 bool ready_to_write = false;
 bool done = false;
+struct tm start_timestamp, stop_timestamp;
+uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_sync_timeout = 60000,
+    gnss_get_timeout = 120000;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -76,9 +79,7 @@ int main ( void )
 {
 
   /* USER CODE BEGIN 1 */
-  uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_sync_timeout = 60000,
-      gnss_get_timeout = 120000;
-  struct tm start_timestamp, stop_timestamp;
+
   /* USER CODE END 1 */
 
   /* USER CODE BEGIN Boot_Mode_Sequence_1 */
@@ -118,7 +119,6 @@ int main ( void )
   MX_GPIO_Init ();
   MX_DMA_Init ();
   MX_UART4_Init ();
-  MX_USART6_UART_Init ();
   MX_SDMMC2_SD_Init ();
   MX_FATFS_Init ();
   /* USER CODE BEGIN 2 */
@@ -188,6 +188,7 @@ int main ( void )
     Error_Handler ();
   }
 
+  // Initialization complete, now sampling
   HAL_HSEM_Release (M4_READY_SEMAPHORE, 0);
 
   HAL_Delay (1);
@@ -206,6 +207,7 @@ int main ( void )
     }
   }
 
+  // Sampling complete, now teardown
   start_time = HAL_GetTick ();
   elapsed_time = 0;
 

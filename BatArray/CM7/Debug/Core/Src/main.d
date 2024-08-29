@@ -36,8 +36,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/stm32h7xx_nucleo_conf.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo_errno.h \
  ../Core/Inc/ad7606c.h ../Core/Inc/gpio.h ../Core/Inc/main.h \
- ../Core/Inc/dma.h ../Core/Inc/hrtim.h ../Core/Inc/spi.h \
- ../Core/Inc/gpio.h ../Core/Inc/ad7606c.h \
+ ../Core/Inc/dma.h ../Core/Inc/hrtim.h ../Core/Inc/gpio.h \
+ ../Core/Inc/ad7606c.h \
  /Users/philbush/STM32CubeIDE/workspace_1.14.0/BatArray/BatArray/Common/Inc/configuration.h
 ../Core/Inc/main.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
@@ -81,7 +81,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/main.h:
 ../Core/Inc/dma.h:
 ../Core/Inc/hrtim.h:
-../Core/Inc/spi.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/ad7606c.h:
 /Users/philbush/STM32CubeIDE/workspace_1.14.0/BatArray/BatArray/Common/Inc/configuration.h:

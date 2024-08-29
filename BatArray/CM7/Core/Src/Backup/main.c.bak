@@ -20,7 +20,6 @@
 #include "main.h"
 #include "dma.h"
 #include "hrtim.h"
-#include "spi.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -134,6 +133,7 @@ int main(void)
 
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(M4_READY_SEMAPHORE));
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(DONE_SEMAPHORE));
+  HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(ERROR_SEMAPHORE));
 /* USER CODE END Boot_Mode_Sequence_2 */
 
   /* USER CODE BEGIN SysInit */
@@ -144,7 +144,6 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_HRTIM_Init();
-  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
   // Wait for M4 to release semaphore
@@ -164,6 +163,9 @@ int main(void)
   {
     Error_Handler ();
   }
+
+  supplemental_gpio_init ();
+  green_led_on ();
 
   while ( !done )
   {
@@ -285,7 +287,17 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
   ad7606c_shutdown ();
 
-  __disable_irq ();
+  if ( !HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
+  {
+    HAL_HSEM_FastTake (ERROR_SEMAPHORE);
+  }
+  else
+  {
+    while ( 1 )
+    {
+      _main_busy_loop (1);
+    }
+  }
 
   supplemental_gpio_init ();
 
@@ -295,7 +307,7 @@ void Error_Handler(void)
 
   while ( 1 )
   {
-    HAL_Delay (250);
+    _main_busy_loop (500000);
 
     if ( toggle )
     {

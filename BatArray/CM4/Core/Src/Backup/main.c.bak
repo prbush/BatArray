@@ -69,20 +69,19 @@ static void _main_busy_loop ( uint32_t delay );
 /* USER CODE END 0 */
 
 /**
- * @brief  The application entry point.
- * @retval int
- */
-int main ( void )
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
 {
 
   /* USER CODE BEGIN 1 */
   uint32_t start_time = 0, elapsed_time = 0, gnss_config_timeout = 10000, gnss_sync_timeout = 60000,
-      gnss_get_timeout = 60000;
-  time_t start_timestamp, stop_timestamp;
+      gnss_get_timeout = 120000;
+  struct tm start_timestamp, stop_timestamp;
   /* USER CODE END 1 */
 
-  /* USER CODE BEGIN Boot_Mode_Sequence_1 */
-#ifndef DEBUG_CM4_STANDALONE
+/* USER CODE BEGIN Boot_Mode_Sequence_1 */
   /*HW semaphore Clock enable*/
   __HAL_RCC_HSEM_CLK_ENABLE();
   /* Activate HSEM notification for Cortex-M4*/
@@ -95,17 +94,17 @@ int main ( void )
   HAL_PWREx_EnterSTOPMode (PWR_MAINREGULATOR_ON, PWR_STOPENTRY_WFE, PWR_D2_DOMAIN);
   /* Clear HSEM flag */
   __HAL_HSEM_CLEAR_FLAG(__HAL_HSEM_SEMID_TO_MASK(HSEM_ID_0));
-#endif // #ifndef DEBUG_CM4_STANDALONE
-  /* USER CODE END Boot_Mode_Sequence_1 */
+/* USER CODE END Boot_Mode_Sequence_1 */
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init ();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_1_FULL_SEMAPHORE));
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_2_FULL_SEMAPHORE));
+  HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(ERROR_SEMAPHORE));
   /* USER CODE END Init */
 
   /* USER CODE BEGIN SysInit */
@@ -116,13 +115,24 @@ int main ( void )
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init ();
-  MX_DMA_Init ();
-  MX_UART4_Init ();
-  MX_USART6_UART_Init ();
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_UART4_Init();
+  MX_SDMMC2_SD_Init();
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
   gnss_init ();
+
+  if ( !sdcard_mount () )
+  {
+    Error_Handler ();
+  }
+
+  if ( !sdcard_allocate_files () )
+  {
+    Error_Handler ();
+  }
 
   start_time = HAL_GetTick ();
 
@@ -177,26 +187,6 @@ int main ( void )
     Error_Handler ();
   }
 
-  MX_SDMMC2_SD_Init ();
-  MX_FATFS_Init ();
-
-  if ( !sdcard_mount () )
-  {
-    Error_Handler ();
-  }
-
-  /*
-   * Create a bookkeeping file:
-   * Put start/ stop times
-   * Total number of samples
-   * Other things?
-   */
-
-  if ( !sdcard_allocate_files () )
-  {
-    Error_Handler ();
-  }
-
   HAL_HSEM_Release (M4_READY_SEMAPHORE, 0);
 
   HAL_Delay (1);
@@ -215,10 +205,28 @@ int main ( void )
     }
   }
 
-  /*
-   * Get stop time
-   * Write start and stop time to files?
-   */
+  start_time = HAL_GetTick ();
+  elapsed_time = 0;
+
+  while ( elapsed_time < gnss_get_timeout )
+  {
+    if ( gnss_get_time (&stop_timestamp) )
+    {
+      break;
+    }
+
+    elapsed_time = HAL_GetTick () - start_time;
+  }
+
+  if ( elapsed_time >= gnss_get_timeout )
+  {
+    Error_Handler ();
+  }
+
+  if ( !sdcard_write_start_stop_times (&start_timestamp, &stop_timestamp) )
+  {
+    Error_Handler ();
+  }
 
   sdcard_shutdown ();
 
@@ -232,15 +240,13 @@ int main ( void )
   bool toggle = true;
   while ( 1 )
   {
-    HAL_Delay (250);
+    _main_busy_loop (5000000);
     if ( toggle )
     {
-      red_led_off ();
       green_led_on ();
     }
     else
     {
-      red_led_on ();
       green_led_off ();
     }
     toggle = !toggle;
@@ -266,10 +272,10 @@ static void _main_busy_loop ( uint32_t delay )
 /* USER CODE END 4 */
 
 /**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
-void Error_Handler ( void )
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
@@ -278,7 +284,17 @@ void Error_Handler ( void )
 
   HAL_HSEM_Release (DONE_SEMAPHORE, 0);
 
-  __disable_irq ();
+  if ( !HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
+  {
+    HAL_HSEM_FastTake (ERROR_SEMAPHORE);
+  }
+  else
+  {
+    while ( 1 )
+    {
+      _main_busy_loop (1);
+    }
+  }
 
   supplemental_gpio_init ();
 
@@ -288,7 +304,7 @@ void Error_Handler ( void )
 
   while ( 1 )
   {
-    HAL_Delay (250);
+    _main_busy_loop (5000000);
 
     if ( toggle )
     {
@@ -306,13 +322,13 @@ void Error_Handler ( void )
 
 #ifdef  USE_FULL_ASSERT
 /**
- * @brief  Reports the name of the source file and the source line number
- *         where the assert_param error has occurred.
- * @param  file: pointer to the source file name
- * @param  line: assert_param error line source number
- * @retval None
- */
-void assert_failed ( uint8_t *file, uint32_t line )
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
