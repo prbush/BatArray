@@ -10534,42 +10534,42 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
  .debug_macro   0x0003efd4      0x7c6 ./Middlewares/Third_Party/FatFs/ff.o
  .debug_macro   0x0003f79a      0x3c2 ./Middlewares/Third_Party/FatFs/ff_gen_drv.o
 
-.debug_line     0x00000000    0x2945c
+.debug_line     0x00000000    0x2945a
  .debug_line    0x00000000      0xb2a ./Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.o
  .debug_line    0x00000b2a      0xa6a ./Core/Src/dma.o
  .debug_line    0x00001594     0x11d5 ./Core/Src/gnss.o
  .debug_line    0x00002769      0xafe ./Core/Src/gpio.o
- .debug_line    0x00003267      0xe99 ./Core/Src/main.o
- .debug_line    0x00004100      0xe7b ./Core/Src/sdcard.o
- .debug_line    0x00004f7b      0xafc ./Core/Src/sdmmc.o
- .debug_line    0x00005a77      0xa70 ./Core/Src/stm32h7xx_hal_msp.o
- .debug_line    0x000064e7      0xda7 ./Core/Src/stm32h7xx_it.o
- .debug_line    0x0000728e      0x84b ./Core/Src/syscalls.o
- .debug_line    0x00007ad9      0x51c ./Core/Src/sysmem.o
- .debug_line    0x00007ff5      0x93e ./Core/Src/u_ubx_protocol.o
- .debug_line    0x00008933      0xc32 ./Core/Src/usart.o
- .debug_line    0x00009565       0x7a ./Core/Startup/startup_stm32h755zitx.o
- .debug_line    0x000095df      0xdc6 ./Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.o
- .debug_line    0x0000a3a5     0x1a15 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal.o
- .debug_line    0x0000bdba     0x11db ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_cortex.o
- .debug_line    0x0000cf95     0x2a75 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_dma.o
- .debug_line    0x0000fa0a     0x1013 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_gpio.o
- .debug_line    0x00010a1d      0xb96 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_hsem.o
- .debug_line    0x000115b3     0x1410 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_pwr_ex.o
- .debug_line    0x000129c3     0x1922 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_rcc.o
- .debug_line    0x000142e5     0x21df ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_rcc_ex.o
- .debug_line    0x000164c4     0x238b ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_sd.o
- .debug_line    0x0001884f     0x42e9 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_uart.o
- .debug_line    0x0001cb38     0x11ba ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_uart_ex.o
- .debug_line    0x0001dcf2     0x13ea ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_ll_sdmmc.o
- .debug_line    0x0001f0dc      0xb8d ./FATFS/App/fatfs.o
- .debug_line    0x0001fc69      0xb73 ./FATFS/Target/bsp_driver_sd.o
- .debug_line    0x000207dc      0x9ae ./FATFS/Target/fatfs_platform.o
- .debug_line    0x0002118a      0xd9e ./FATFS/Target/sd_diskio.o
- .debug_line    0x00021f28      0xc98 ./Middlewares/Third_Party/FatFs/ccsbcs.o
- .debug_line    0x00022bc0      0xc01 ./Middlewares/Third_Party/FatFs/diskio.o
- .debug_line    0x000237c1     0x507f ./Middlewares/Third_Party/FatFs/ff.o
- .debug_line    0x00028840      0xc1c ./Middlewares/Third_Party/FatFs/ff_gen_drv.o
+ .debug_line    0x00003267      0xe97 ./Core/Src/main.o
+ .debug_line    0x000040fe      0xe7b ./Core/Src/sdcard.o
+ .debug_line    0x00004f79      0xafc ./Core/Src/sdmmc.o
+ .debug_line    0x00005a75      0xa70 ./Core/Src/stm32h7xx_hal_msp.o
+ .debug_line    0x000064e5      0xda7 ./Core/Src/stm32h7xx_it.o
+ .debug_line    0x0000728c      0x84b ./Core/Src/syscalls.o
+ .debug_line    0x00007ad7      0x51c ./Core/Src/sysmem.o
+ .debug_line    0x00007ff3      0x93e ./Core/Src/u_ubx_protocol.o
+ .debug_line    0x00008931      0xc32 ./Core/Src/usart.o
+ .debug_line    0x00009563       0x7a ./Core/Startup/startup_stm32h755zitx.o
+ .debug_line    0x000095dd      0xdc6 ./Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.o
+ .debug_line    0x0000a3a3     0x1a15 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal.o
+ .debug_line    0x0000bdb8     0x11db ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_cortex.o
+ .debug_line    0x0000cf93     0x2a75 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_dma.o
+ .debug_line    0x0000fa08     0x1013 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_gpio.o
+ .debug_line    0x00010a1b      0xb96 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_hsem.o
+ .debug_line    0x000115b1     0x1410 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_pwr_ex.o
+ .debug_line    0x000129c1     0x1922 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_rcc.o
+ .debug_line    0x000142e3     0x21df ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_rcc_ex.o
+ .debug_line    0x000164c2     0x238b ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_sd.o
+ .debug_line    0x0001884d     0x42e9 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_uart.o
+ .debug_line    0x0001cb36     0x11ba ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_uart_ex.o
+ .debug_line    0x0001dcf0     0x13ea ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_ll_sdmmc.o
+ .debug_line    0x0001f0da      0xb8d ./FATFS/App/fatfs.o
+ .debug_line    0x0001fc67      0xb73 ./FATFS/Target/bsp_driver_sd.o
+ .debug_line    0x000207da      0x9ae ./FATFS/Target/fatfs_platform.o
+ .debug_line    0x00021188      0xd9e ./FATFS/Target/sd_diskio.o
+ .debug_line    0x00021f26      0xc98 ./Middlewares/Third_Party/FatFs/ccsbcs.o
+ .debug_line    0x00022bbe      0xc01 ./Middlewares/Third_Party/FatFs/diskio.o
+ .debug_line    0x000237bf     0x507f ./Middlewares/Third_Party/FatFs/ff.o
+ .debug_line    0x0002883e      0xc1c ./Middlewares/Third_Party/FatFs/ff_gen_drv.o
 
 .debug_str      0x00000000   0x185a31
  .debug_str     0x00000000   0x17931a ./Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.o

@@ -274,7 +274,7 @@ void Error_Handler ( void )
   /* User can add his own implementation to report the HAL error return state */
   ad7606c_shutdown ();
 
-  if ( HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
+  if ( !HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
   {
     HAL_HSEM_FastTake (ERROR_SEMAPHORE);
   }

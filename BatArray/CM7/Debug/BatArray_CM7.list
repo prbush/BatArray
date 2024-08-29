@@ -2449,12 +2449,12 @@ void Error_Handler ( void )
   ad7606c_shutdown ();
  8001112:	f7ff fa59 	bl	80005c8 <ad7606c_shutdown>
 
-  if ( HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
+  if ( !HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
  8001116:	2005      	movs	r0, #5
  8001118:	f002 fb64 	bl	80037e4 <HAL_HSEM_IsSemTaken>
  800111c:	4603      	mov	r3, r0
  800111e:	2b00      	cmp	r3, #0
- 8001120:	d009      	beq.n	8001136 <Error_Handler+0x2a>
+ 8001120:	d109      	bne.n	8001136 <Error_Handler+0x2a>
   {
     HAL_HSEM_FastTake (ERROR_SEMAPHORE);
  8001122:	2005      	movs	r0, #5

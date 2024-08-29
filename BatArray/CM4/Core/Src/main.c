@@ -118,9 +118,7 @@ int main ( void )
   MX_GPIO_Init ();
   MX_DMA_Init ();
   MX_UART4_Init ();
-//  MX_SDMMC2_SD_Init();
   MX_USART6_UART_Init ();
-//  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
   gnss_init ();
@@ -185,13 +183,6 @@ int main ( void )
   {
     Error_Handler ();
   }
-
-  /*
-   * Create a bookkeeping file:
-   * Put start/ stop times
-   * Total number of samples
-   * Other things?
-   */
 
   if ( !sdcard_allocate_files () )
   {
@@ -295,7 +286,7 @@ void Error_Handler ( void )
 
   HAL_HSEM_Release (DONE_SEMAPHORE, 0);
 
-  if ( HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
+  if ( !HAL_HSEM_IsSemTaken (ERROR_SEMAPHORE) )
   {
     HAL_HSEM_FastTake (ERROR_SEMAPHORE);
   }
