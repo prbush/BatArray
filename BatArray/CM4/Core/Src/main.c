@@ -152,23 +152,23 @@ int main ( void )
     Error_Handler ();
   }
 
-  start_time = HAL_GetTick ();
-  elapsed_time = 0;
-
-  while ( elapsed_time < gnss_sync_timeout )
-  {
-    if ( gnss_sync () )
-    {
-      break;
-    }
-
-    elapsed_time = HAL_GetTick () - start_time;
-  }
-
-  if ( elapsed_time >= gnss_sync_timeout )
-  {
-    Error_Handler ();
-  }
+//  start_time = HAL_GetTick ();
+//  elapsed_time = 0;
+//
+//  while ( elapsed_time < gnss_sync_timeout )
+//  {
+//    if ( gnss_sync () )
+//    {
+//      break;
+//    }
+//
+//    elapsed_time = HAL_GetTick () - start_time;
+//  }
+//
+//  if ( elapsed_time >= gnss_sync_timeout )
+//  {
+//    Error_Handler ();
+//  }
 
   start_time = HAL_GetTick ();
   elapsed_time = 0;

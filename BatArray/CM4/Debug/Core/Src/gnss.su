@@ -2,7 +2,7 @@
 ../Core/Src/gnss.c:71:6:gnss_config	24	static
 ../Core/Src/gnss.c:101:6:gnss_sync	536	static
 ../Core/Src/gnss.c:169:13:gnss_reset_uart	8	static
-../Core/Src/gnss.c:189:6:gnss_get_time	208	dynamic
+../Core/Src/gnss.c:189:6:gnss_get_time	200	dynamic
 ../Core/Src/gnss.c:286:13:send_config	216	dynamic
 ../Core/Src/gnss.c:443:13:process_frame_sync_messages	152	static
 ../Core/Src/gnss.c:494:17:get_two_bytes	32	static
