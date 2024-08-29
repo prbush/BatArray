@@ -119,9 +119,21 @@ int main ( void )
   MX_DMA_Init ();
   MX_UART4_Init ();
   MX_USART6_UART_Init ();
+  MX_SDMMC2_SD_Init ();
+  MX_FATFS_Init ();
   /* USER CODE BEGIN 2 */
 
   gnss_init ();
+
+  if ( !sdcard_mount () )
+  {
+    Error_Handler ();
+  }
+
+  if ( !sdcard_allocate_files () )
+  {
+    Error_Handler ();
+  }
 
   start_time = HAL_GetTick ();
 
@@ -172,19 +184,6 @@ int main ( void )
   }
 
   if ( elapsed_time >= gnss_get_timeout )
-  {
-    Error_Handler ();
-  }
-
-  MX_SDMMC2_SD_Init ();
-  MX_FATFS_Init ();
-
-  if ( !sdcard_mount () )
-  {
-    Error_Handler ();
-  }
-
-  if ( !sdcard_allocate_files () )
   {
     Error_Handler ();
   }
