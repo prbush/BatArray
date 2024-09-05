@@ -16,7 +16,7 @@
 //__attribute__((section(".DTCMRAM_sec")))                     static ad7606c ad7606c_instance;
 static ad7606c ad7606c_instance;
 static float channel_1_conversion = 0;
-__attribute__((section(".ADC_BUFFER_sec")))                             ad7606c_data_buffer data_buffer;
+__attribute__((section(".ADC_BUFFER_sec")))                              ad7606c_data_buffer data_buffer;
 uint32_t buffer_index = 0;
 uint32_t buffer_array_index = 0;
 
@@ -256,9 +256,6 @@ void ad7606c_read_conversion_results ( void )
       }
 
       ad7606c_instance.conversions_processed++;
-
-      // Convert a channel for debugging
-      channel_1_conversion = (int16_t) buf[0] * 0.000152588f;
 
       // Copy the results over
       memcpy (&(data_buffer.conversion_buffer[buffer_array_index][buffer_index]), &(buf[0]),

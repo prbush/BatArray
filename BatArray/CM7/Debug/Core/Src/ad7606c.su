@@ -3,7 +3,7 @@
 ../Core/Src/ad7606c.c:118:6:ad7606c_apply_settings	16	static
 ../Core/Src/ad7606c.c:206:6:ad7606c_start_conversion	8	static
 ../Core/Src/ad7606c.c:222:6:ad7606c_read_conversion_results	48	static
-../Core/Src/ad7606c.c:295:13:_ad7606c_read_reg	32	static
-../Core/Src/ad7606c.c:365:13:_ad7606c_write_reg	24	static
-../Core/Src/ad7606c.c:407:13:_ad7606c_exit_register_mode	16	static
-../Core/Src/ad7606c.c:431:13:_ad7606c_busy_loop	24	static
+../Core/Src/ad7606c.c:292:13:_ad7606c_read_reg	32	static
+../Core/Src/ad7606c.c:362:13:_ad7606c_write_reg	24	static
+../Core/Src/ad7606c.c:404:13:_ad7606c_exit_register_mode	16	static
+../Core/Src/ad7606c.c:428:13:_ad7606c_busy_loop	24	static
