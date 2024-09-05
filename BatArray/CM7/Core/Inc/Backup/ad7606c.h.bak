@@ -89,7 +89,7 @@
 #define ADC_READ_BIT 1
 #define ADC_WRITE_BIT 0
 #define AD7606C_ID 0X22
-#define RAW_VAL_BUFFER_SIZE 131072 // 128K
+#define RAW_VAL_BUFFER_SIZE 131072 // 65536 // 128K
 
 typedef struct
 {

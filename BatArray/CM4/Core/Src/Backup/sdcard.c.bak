@@ -16,7 +16,7 @@ FIL start_stop_times_file;
 uint32_t writes_counter = 0;
 uint32_t file_array_index = 0;
 uint32_t buffer_select = 0;
-__attribute__((section(".ADC_BUFFER_sec")))                  ad7606c_data_buffer data_buffer;
+__attribute__((section(".ADC_BUFFER_sec")))                             ad7606c_data_buffer data_buffer;
 
 uint64_t seek_point = 0;
 uint32_t num_file_writes = 0;
@@ -44,21 +44,21 @@ bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop )
 {
   FRESULT res;
   UINT bytes_written = 0;
-  char buffer[512] =
+  char buffer[1024] =
     { 0 };
   size_t bytes_required = 0;
   size_t buf_index = 0;
 
-  bytes_required = strftime (&(buffer[0]), sizeof(buffer), "Start time: %c\n", start);
+  bytes_required = strftime (&(buffer[0]), sizeof(buffer), "Start time: %X %x UTC\r\n", start);
   if ( bytes_required > sizeof(buffer) )
   {
     return false;
   }
 
-  buf_index = bytes_required + 1;
+  buf_index = strlen (buffer);
 
-  bytes_required = strftime (&(buffer[buf_index]), sizeof(buffer) - buf_index, "Stop time: %c\n",
-                             stop);
+  bytes_required = strftime (&(buffer[buf_index]), sizeof(buffer) - buf_index,
+                             "Stop time: %X %x UTC\r\n", stop);
   if ( bytes_required > (sizeof(buffer) - buf_index) )
   {
     return false;
@@ -70,10 +70,10 @@ bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop )
     return false;
   }
 
-  res = f_write (&start_stop_times_file, (const void*) &(buffer[0]), sizeof(buffer),
+  res = f_write (&start_stop_times_file, (const void*) &(buffer[0]), strlen (buffer),
                  &bytes_written);
 
-  if ( (res != FR_OK) || (bytes_written != RAW_VAL_BUFFER_SIZE) )
+  if ( (res != FR_OK) || (bytes_written != strlen (buffer)) )
   {
     return false;
   }
@@ -101,13 +101,8 @@ bool sdcard_allocate_files ( void )
   char filename_buffer[32];
 
   // Bookeeping file
-  snprintf (filename_buffer, 32, "Start_Stop_Times");
+  snprintf (filename_buffer, 32, "Start_Stop_Times.txt");
   res = f_open (&start_stop_times_file, filename_buffer, FA_CREATE_ALWAYS | FA_WRITE);
-  if ( res != FR_OK )
-  {
-    return false;
-  }
-  res = f_expand (&start_stop_times_file, 512, 1);
   if ( res != FR_OK )
   {
     return false;

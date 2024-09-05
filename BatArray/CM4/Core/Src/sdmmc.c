@@ -68,15 +68,7 @@ void HAL_SD_MspInit(SD_HandleTypeDef* sdHandle)
   /** Initializes the peripherals clock
   */
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SDMMC;
-    PeriphClkInitStruct.PLL2.PLL2M = 4;
-    PeriphClkInitStruct.PLL2.PLL2N = 100;
-    PeriphClkInitStruct.PLL2.PLL2P = 2;
-    PeriphClkInitStruct.PLL2.PLL2Q = 2;
-    PeriphClkInitStruct.PLL2.PLL2R = 2;
-    PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_1;
-    PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOWIDE;
-    PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
-    PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL2;
+    PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
     {
       Error_Handler();
@@ -95,7 +87,7 @@ void HAL_SD_MspInit(SD_HandleTypeDef* sdHandle)
     PB3 (JTDO/TRACESWO)     ------> SDMMC2_D2
     PB4 (NJTRST)     ------> SDMMC2_D3
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_14|SD_D1_Pin|SD_D2_Pin|SD_D3_Pin;
+    GPIO_InitStruct.Pin = SD_D0_Pin|SD_D1_Pin|SD_D2_Pin|SD_D3_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -137,7 +129,7 @@ void HAL_SD_MspDeInit(SD_HandleTypeDef* sdHandle)
     PB3 (JTDO/TRACESWO)     ------> SDMMC2_D2
     PB4 (NJTRST)     ------> SDMMC2_D3
     */
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_14|SD_D1_Pin|SD_D2_Pin|SD_D3_Pin);
+    HAL_GPIO_DeInit(GPIOB, SD_D0_Pin|SD_D1_Pin|SD_D2_Pin|SD_D3_Pin);
 
     HAL_GPIO_DeInit(GPIOD, SD_CK_Pin|SD_CMD_Pin);
 

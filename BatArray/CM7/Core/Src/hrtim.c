@@ -57,7 +57,7 @@ void MX_HRTIM_Init ( void )
   {
     Error_Handler ();
   }
-  pTimeBaseCfg.Period = 1600; // 1600;
+  pTimeBaseCfg.Period = 1600; // max = 1425 (280KHz)
   pTimeBaseCfg.RepetitionCounter = 0x00;
   pTimeBaseCfg.PrescalerRatio = HRTIM_PRESCALERRATIO_DIV1;
   pTimeBaseCfg.Mode = HRTIM_MODE_CONTINUOUS;

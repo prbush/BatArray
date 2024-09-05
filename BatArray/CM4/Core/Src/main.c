@@ -72,17 +72,17 @@ static void _main_busy_loop ( uint32_t delay );
 /* USER CODE END 0 */
 
 /**
- * @brief  The application entry point.
- * @retval int
- */
-int main ( void )
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
 {
 
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
 
-  /* USER CODE BEGIN Boot_Mode_Sequence_1 */
+/* USER CODE BEGIN Boot_Mode_Sequence_1 */
   /*HW semaphore Clock enable*/
   __HAL_RCC_HSEM_CLK_ENABLE();
   /* Activate HSEM notification for Cortex-M4*/
@@ -95,11 +95,11 @@ int main ( void )
   HAL_PWREx_EnterSTOPMode (PWR_MAINREGULATOR_ON, PWR_STOPENTRY_WFE, PWR_D2_DOMAIN);
   /* Clear HSEM flag */
   __HAL_HSEM_CLEAR_FLAG(__HAL_HSEM_SEMID_TO_MASK(HSEM_ID_0));
-  /* USER CODE END Boot_Mode_Sequence_1 */
+/* USER CODE END Boot_Mode_Sequence_1 */
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init ();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -116,11 +116,11 @@ int main ( void )
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init ();
-  MX_DMA_Init ();
-  MX_UART4_Init ();
-  MX_SDMMC2_SD_Init ();
-  MX_FATFS_Init ();
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_UART4_Init();
+  MX_SDMMC2_SD_Init();
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
   gnss_init ();
@@ -275,10 +275,10 @@ static void _main_busy_loop ( uint32_t delay )
 /* USER CODE END 4 */
 
 /**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
-void Error_Handler ( void )
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
@@ -325,13 +325,13 @@ void Error_Handler ( void )
 
 #ifdef  USE_FULL_ASSERT
 /**
- * @brief  Reports the name of the source file and the source line number
- *         where the assert_param error has occurred.
- * @param  file: pointer to the source file name
- * @param  line: assert_param error line source number
- * @retval None
- */
-void assert_failed ( uint8_t *file, uint32_t line )
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
