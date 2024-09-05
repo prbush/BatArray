@@ -43,6 +43,7 @@
 /* USER CODE BEGIN PV */
 uint64_t timer_irq_counter = 0;
 bool adc_capture_complete = false;
+bool start_conversion = false;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -269,6 +270,8 @@ void HAL_HRTIM_RepetitionEventCallback ( HRTIM_HandleTypeDef *hhrtim, uint32_t T
   *aux_lines_odr_reg = 0x780;
 
   timer_irq_counter++;
+
+  start_conversion = true;
 }
 
 /**

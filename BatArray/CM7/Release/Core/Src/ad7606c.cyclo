@@ -1,0 +1,9 @@
+../Core/Src/ad7606c.c:33:6:ad7606c_init	2
+../Core/Src/ad7606c.c:114:6:ad7606c_shutdown	1
+../Core/Src/ad7606c.c:120:6:ad7606c_apply_settings	7
+../Core/Src/ad7606c.c:208:6:ad7606c_start_conversion	2
+../Core/Src/ad7606c.c:224:6:ad7606c_read_conversion_results	8
+../Core/Src/ad7606c.c:296:13:_ad7606c_read_reg	1
+../Core/Src/ad7606c.c:366:13:_ad7606c_write_reg	1
+../Core/Src/ad7606c.c:408:13:_ad7606c_exit_register_mode	1
+../Core/Src/ad7606c.c:432:13:_ad7606c_busy_loop	2
