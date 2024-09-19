@@ -8,7 +8,7 @@
 #ifndef INC_CONFIGURATION_H_
 #define INC_CONFIGURATION_H_
 
-#define TESTING
+//#define TESTING
 
 #ifdef TESTING
 
@@ -16,7 +16,7 @@
 
 #define NUMBER_OF_FILES (1U)
 
-#define MINS_PER_FILE (1U)
+#define MINS_PER_FILE (30U)
 
 #else
 
@@ -27,7 +27,5 @@
 #define MINS_PER_FILE (60U)
 
 #endif
-
-//#define SKIP_ADC_CONFIG_CHECKS
 
 #endif /* INC_CONFIGURATION_H_ */

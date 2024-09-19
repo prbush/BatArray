@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9777bc25-fd6c-4f82-b3af-8696d81b3cbf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BatArrayVis/bat_array_plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BatArray/BatArray.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/../BatArray/BatArray.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BatArray/CM4/Release/BatArray_CM4.elf" beforeDir="false" afterPath="$PROJECT_DIR$/../BatArray/CM4/Release/BatArray_CM4.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BatArray/CM4/Release/BatArray_CM4.list" beforeDir="false" afterPath="$PROJECT_DIR$/../BatArray/CM4/Release/BatArray_CM4.list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BatArray/CM4/Release/BatArray_CM4.map" beforeDir="false" afterPath="$PROJECT_DIR$/../BatArray/CM4/Release/BatArray_CM4.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BatArray/CM4/Release/Core/Src/sdcard.o" beforeDir="false" afterPath="$PROJECT_DIR$/../BatArray/CM4/Release/Core/Src/sdcard.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BatArray/Common/Inc/configuration.h" beforeDir="false" afterPath="$PROJECT_DIR$/../BatArray/Common/Inc/configuration.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BatArrayVis/main.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,16 +29,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.bat_array_plot.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/philbush/Downloads"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.bat_array_plot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/philbush/Downloads&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$USER_HOME$/Downloads" />
@@ -57,7 +60,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BatArrayVis/bat_array_plot.py" />
-      <option name="PARAMETERS" value="/Volumes/Untitled/hour_0.raw 100000 1600000 false" />
+      <option name="PARAMETERS" value="/Volumes/Untitled/hour_0.raw 250000 60000000 false" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
