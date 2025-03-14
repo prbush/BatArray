@@ -72,17 +72,17 @@ static void _main_busy_loop ( uint32_t delay );
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
-int main(void)
+ * @brief  The application entry point.
+ * @retval int
+ */
+int main ( void )
 {
 
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
 
-/* USER CODE BEGIN Boot_Mode_Sequence_1 */
+  /* USER CODE BEGIN Boot_Mode_Sequence_1 */
   /*HW semaphore Clock enable*/
   __HAL_RCC_HSEM_CLK_ENABLE();
   /* Activate HSEM notification for Cortex-M4*/
@@ -95,17 +95,18 @@ int main(void)
   HAL_PWREx_EnterSTOPMode (PWR_MAINREGULATOR_ON, PWR_STOPENTRY_WFE, PWR_D2_DOMAIN);
   /* Clear HSEM flag */
   __HAL_HSEM_CLEAR_FLAG(__HAL_HSEM_SEMID_TO_MASK(HSEM_ID_0));
-/* USER CODE END Boot_Mode_Sequence_1 */
+  /* USER CODE END Boot_Mode_Sequence_1 */
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+  HAL_Init ();
 
   /* USER CODE BEGIN Init */
 
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_1_FULL_SEMAPHORE));
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_2_FULL_SEMAPHORE));
   HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(ERROR_SEMAPHORE));
+  HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(DONE_EARLY_SEMAPHORE));
   /* USER CODE END Init */
 
   /* USER CODE BEGIN SysInit */
@@ -116,11 +117,11 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_UART4_Init();
-  MX_SDMMC2_SD_Init();
-  MX_FATFS_Init();
+  MX_GPIO_Init ();
+  MX_DMA_Init ();
+  MX_UART4_Init ();
+  MX_SDMMC2_SD_Init ();
+  MX_FATFS_Init ();
   /* USER CODE BEGIN 2 */
 
   gnss_init ();
@@ -151,24 +152,6 @@ int main(void)
   {
     Error_Handler ();
   }
-
-//  start_time = HAL_GetTick ();
-//  elapsed_time = 0;
-//
-//  while ( elapsed_time < gnss_sync_timeout )
-//  {
-//    if ( gnss_sync () )
-//    {
-//      break;
-//    }
-//
-//    elapsed_time = HAL_GetTick () - start_time;
-//  }
-//
-//  if ( elapsed_time >= gnss_sync_timeout )
-//  {
-//    Error_Handler ();
-//  }
 
   start_time = HAL_GetTick ();
   elapsed_time = 0;
@@ -275,10 +258,10 @@ static void _main_busy_loop ( uint32_t delay )
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
-void Error_Handler(void)
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
+void Error_Handler ( void )
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
@@ -325,13 +308,13 @@ void Error_Handler(void)
 
 #ifdef  USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t *file, uint32_t line)
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
+void assert_failed ( uint8_t *file, uint32_t line )
 {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,

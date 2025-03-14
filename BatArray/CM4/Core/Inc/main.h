@@ -54,10 +54,11 @@ extern bool done;
 #define BUFFER_2_FULL_SEMAPHORE (3U)
 #define DONE_SEMAPHORE (4U)
 #define ERROR_SEMAPHORE (5U)
+#define DONE_EARLY_SEMAPHORE (6U)
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
+void Error_Handler ( void );
 
 /* USER CODE BEGIN EFP */
 
