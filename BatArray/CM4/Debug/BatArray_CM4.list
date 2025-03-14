@@ -17,9 +17,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   6 .data         00000180  10040000  08118ff4  0001a000  2**3
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .bss          00001000  10040180  08119174  0001a180  2**3
+  7 .bss          000029c8  10040180  08119174  0001a180  2**3
                   ALLOC
-  8 ._user_heap_stack 00000600  10041180  08119174  0001a180  2**0
+  8 ._user_heap_stack 00000600  10042b48  08119174  0001ab48  2**0
                   ALLOC
   9 .ARM.attributes 00000030  00000000  00000000  0001a180  2**0
                   CONTENTS, READONLY
@@ -31,19 +31,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  13 .debug_rnglists 000010d0  00000000  00000000  0003d2c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_macro  0003f19e  00000000  00000000  0003e398  2**0
+ 14 .debug_macro  0003f198  00000000  00000000  0003e398  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_line   00027772  00000000  00000000  0007d536  2**0
+ 15 .debug_line   00027772  00000000  00000000  0007d530  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_str    00184e3b  00000000  00000000  000a4ca8  2**0
+ 16 .debug_str    00184e34  00000000  00000000  000a4ca2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .comment      00000043  00000000  00000000  00229ae3  2**0
+ 17 .comment      00000043  00000000  00000000  00229ad6  2**0
                   CONTENTS, READONLY
- 18 .debug_frame  000068d4  00000000  00000000  00229b28  2**2
+ 18 .debug_frame  000068d4  00000000  00000000  00229b1c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  19 .ADC_BUFFER_sec 00040000  10000000  10000000  0001b000  2**2
                   ALLOC
- 20 .debug_line_str 00000072  00000000  00000000  002303fc  2**0
+ 20 .debug_line_str 00000072  00000000  00000000  002303f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -582,7 +582,7 @@ void gnss_init ( void )
  81007a0:	bd80      	pop	{r7, pc}
  81007a2:	bf00      	nop
  81007a4:	100401a0 	.word	0x100401a0
- 81007a8:	10040774 	.word	0x10040774
+ 81007a8:	1004213c 	.word	0x1004213c
  81007ac:	58020800 	.word	0x58020800
 
 081007b0 <gnss_config>:
@@ -1036,7 +1036,7 @@ bool gnss_get_time ( struct tm *return_time )
  8100ac6:	bf00      	nop
  8100ac8:	100400ac 	.word	0x100400ac
  8100acc:	100401a0 	.word	0x100401a0
- 8100ad0:	10040808 	.word	0x10040808
+ 8100ad0:	100421d0 	.word	0x100421d0
  8100ad4:	40020010 	.word	0x40020010
  8100ad8:	40020028 	.word	0x40020028
  8100adc:	40020040 	.word	0x40020040
@@ -1459,7 +1459,7 @@ static bool send_config ( uint8_t *config_array, size_t message_size, uint8_t re
  8100e0e:	e129      	b.n	8101064 <send_config+0x4cc>
  8100e10:	6bca1af3 	.word	0x6bca1af3
  8100e14:	100401a0 	.word	0x100401a0
- 8100e18:	10040808 	.word	0x10040808
+ 8100e18:	100421d0 	.word	0x100421d0
  8100e1c:	40020010 	.word	0x40020010
  8100e20:	40020028 	.word	0x40020028
  8100e24:	40020040 	.word	0x40020040
@@ -1774,7 +1774,7 @@ static bool send_config ( uint8_t *config_array, size_t message_size, uint8_t re
  810106a:	46bd      	mov	sp, r7
  810106c:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
  8101070:	100401a0 	.word	0x100401a0
- 8101074:	10040808 	.word	0x10040808
+ 8101074:	100421d0 	.word	0x100421d0
  8101078:	40020010 	.word	0x40020010
  810107c:	40020028 	.word	0x40020028
  8101080:	40020040 	.word	0x40020040
@@ -2726,7 +2726,7 @@ bool sdcard_mount ( void )
  810165c:	bd80      	pop	{r7, pc}
  810165e:	bf00      	nop
  8101660:	081180a8 	.word	0x081180a8
- 8101664:	1004088c 	.word	0x1004088c
+ 8101664:	10042254 	.word	0x10042254
 
 08101668 <sdcard_write_start_stop_times>:
 
@@ -2883,7 +2883,7 @@ bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop )
  81017a2:	bf00      	nop
  81017a4:	081180ac 	.word	0x081180ac
  81017a8:	081180c4 	.word	0x081180c4
- 81017ac:	10040478 	.word	0x10040478
+ 81017ac:	10041e40 	.word	0x10041e40
 
 081017b0 <sdcard_shutdown>:
 
@@ -2899,7 +2899,7 @@ void sdcard_shutdown ( void )
  81017ba:	bf00      	nop
  81017bc:	bd80      	pop	{r7, pc}
  81017be:	bf00      	nop
- 81017c0:	100406ec 	.word	0x100406ec
+ 81017c0:	100420b4 	.word	0x100420b4
 
 081017c4 <sdcard_allocate_files>:
 
@@ -3001,8 +3001,8 @@ bool sdcard_allocate_files ( void )
  8101868:	3301      	adds	r3, #1
  810186a:	637b      	str	r3, [r7, #52]	@ 0x34
  810186c:	6b7b      	ldr	r3, [r7, #52]	@ 0x34
- 810186e:	2b00      	cmp	r3, #0
- 8101870:	d0c7      	beq.n	8101802 <sdcard_allocate_files+0x3e>
+ 810186e:	2b0b      	cmp	r3, #11
+ 8101870:	d9c7      	bls.n	8101802 <sdcard_allocate_files+0x3e>
     }
   }
 
@@ -3027,7 +3027,7 @@ bool sdcard_allocate_files ( void )
  8101898:	46bd      	mov	sp, r7
  810189a:	bd80      	pop	{r7, pc}
  810189c:	081180dc 	.word	0x081180dc
- 81018a0:	10040478 	.word	0x10040478
+ 81018a0:	10041e40 	.word	0x10041e40
  81018a4:	081180f4 	.word	0x081180f4
  81018a8:	10040220 	.word	0x10040220
 
@@ -3136,7 +3136,7 @@ bool sdcard_write_to_file ( void )
     if ( file_array_index == NUMBER_OF_FILES )
  8101946:	4b1d      	ldr	r3, [pc, #116]	@ (81019bc <sdcard_write_to_file+0x110>)
  8101948:	681b      	ldr	r3, [r3, #0]
- 810194a:	2b01      	cmp	r3, #1
+ 810194a:	2b0c      	cmp	r3, #12
  810194c:	d104      	bne.n	8101958 <sdcard_write_to_file+0xac>
     {
       // Jump out of the loop
@@ -3201,14 +3201,14 @@ bool sdcard_write_to_file ( void )
  81019ae:	46bd      	mov	sp, r7
  81019b0:	bdb0      	pop	{r4, r5, r7, pc}
  81019b2:	bf00      	nop
- 81019b4:	100406d8 	.word	0x100406d8
+ 81019b4:	100420a0 	.word	0x100420a0
  81019b8:	10000000 	.word	0x10000000
- 81019bc:	100406d4 	.word	0x100406d4
+ 81019bc:	1004209c 	.word	0x1004209c
  81019c0:	10040220 	.word	0x10040220
- 81019c4:	100406e8 	.word	0x100406e8
- 81019c8:	100406d0 	.word	0x100406d0
+ 81019c4:	100420b0 	.word	0x100420b0
+ 81019c8:	10042098 	.word	0x10042098
  81019cc:	100401cd 	.word	0x100401cd
- 81019d0:	100406e0 	.word	0x100406e0
+ 81019d0:	100420a8 	.word	0x100420a8
  81019d4:	00000000 	.word	0x00000000
 
 081019d8 <get_file_size>:
@@ -3243,8 +3243,8 @@ static uint64_t get_file_size ( void )
  8101a10:	4770      	bx	lr
  8101a12:	bf00      	nop
  8101a14:	f3af 8000 	nop.w
- 8101a18:	2aea5400 	.word	0x2aea5400
- 8101a1c:	00000000 	.word	0x00000000
+ 8101a18:	5a4e9000 	.word	0x5a4e9000
+ 8101a1c:	00000003 	.word	0x00000003
 
 08101a20 <get_max_writes_per_file>:
 
@@ -3320,7 +3320,7 @@ void MX_SDMMC2_SD_Init(void)
 }
  8101a7c:	bf00      	nop
  8101a7e:	bd80      	pop	{r7, pc}
- 8101a80:	100406ec 	.word	0x100406ec
+ 8101a80:	100420b4 	.word	0x100420b4
  8101a84:	48022400 	.word	0x48022400
 
 08101a88 <HAL_SD_MspInit>:
@@ -3784,7 +3784,7 @@ void DMA1_Stream0_IRQHandler(void)
  8101cba:	bf00      	nop
  8101cbc:	bd80      	pop	{r7, pc}
  8101cbe:	bf00      	nop
- 8101cc0:	10040808 	.word	0x10040808
+ 8101cc0:	100421d0 	.word	0x100421d0
 
 08101cc4 <EXTI15_10_IRQHandler>:
 
@@ -3830,7 +3830,7 @@ void UART4_IRQHandler(void)
  8101cde:	bf00      	nop
  8101ce0:	bd80      	pop	{r7, pc}
  8101ce2:	bf00      	nop
- 8101ce4:	10040774 	.word	0x10040774
+ 8101ce4:	1004213c 	.word	0x1004213c
 
 08101ce8 <SDMMC2_IRQHandler>:
 
@@ -3854,7 +3854,7 @@ void SDMMC2_IRQHandler(void)
  8101cf2:	bf00      	nop
  8101cf4:	bd80      	pop	{r7, pc}
  8101cf6:	bf00      	nop
- 8101cf8:	100406ec 	.word	0x100406ec
+ 8101cf8:	100420b4 	.word	0x100420b4
 
 08101cfc <HSEM2_IRQHandler>:
 
@@ -3948,8 +3948,8 @@ void HAL_HSEM_FreeCallback ( uint32_t SemMask )
  8101d5c:	bd80      	pop	{r7, pc}
  8101d5e:	bf00      	nop
  8101d60:	100401cc 	.word	0x100401cc
- 8101d64:	10040768 	.word	0x10040768
- 8101d68:	100406d8 	.word	0x100406d8
+ 8101d64:	10042130 	.word	0x10042130
+ 8101d68:	100420a0 	.word	0x100420a0
 
 08101d6c <HAL_GPIO_EXTI_Callback>:
 
@@ -4282,8 +4282,8 @@ void *_sbrk(ptrdiff_t incr)
  8101f0e:	bd80      	pop	{r7, pc}
  8101f10:	10048000 	.word	0x10048000
  8101f14:	00000400 	.word	0x00000400
- 8101f18:	10040770 	.word	0x10040770
- 8101f1c:	10041180 	.word	0x10041180
+ 8101f18:	10042138 	.word	0x10042138
+ 8101f1c:	10042b48 	.word	0x10042b48
 
 08101f20 <uUbxProtocolDecode>:
 
@@ -4772,7 +4772,7 @@ void MX_UART4_Init(void)
 }
  8102198:	bf00      	nop
  810219a:	bd80      	pop	{r7, pc}
- 810219c:	10040774 	.word	0x10040774
+ 810219c:	1004213c 	.word	0x1004213c
  81021a0:	40004c00 	.word	0x40004c00
 
 081021a4 <HAL_UART_MspInit>:
@@ -4959,7 +4959,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
  81022d4:	40004c00 	.word	0x40004c00
  81022d8:	58024400 	.word	0x58024400
  81022dc:	58020000 	.word	0x58020000
- 81022e0:	10040808 	.word	0x10040808
+ 81022e0:	100421d0 	.word	0x100421d0
  81022e4:	40020010 	.word	0x40020010
 
 081022e8 <HAL_UART_MspDeInit>:
@@ -5126,7 +5126,7 @@ bool uart4_init ( void )
  81023c6:	4618      	mov	r0, r3
  81023c8:	bd80      	pop	{r7, pc}
  81023ca:	bf00      	nop
- 81023cc:	10040774 	.word	0x10040774
+ 81023cc:	1004213c 	.word	0x1004213c
  81023d0:	40004c00 	.word	0x40004c00
 
 081023d4 <Reset_Handler>:
@@ -5218,7 +5218,7 @@ LoopFillZerobss:
   ldr r2, =_sbss
  810241c:	10040180 	.word	0x10040180
   ldr r4, =_ebss
- 8102420:	10041180 	.word	0x10041180
+ 8102420:	10042b48 	.word	0x10042b48
 
 08102424 <ADC3_IRQHandler>:
  * @retval None
@@ -5455,7 +5455,7 @@ __weak void HAL_IncTick(void)
  810256c:	4770      	bx	lr
  810256e:	bf00      	nop
  8102570:	100400c0 	.word	0x100400c0
- 8102574:	10040880 	.word	0x10040880
+ 8102574:	10042248 	.word	0x10042248
 
 08102578 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other
@@ -5475,7 +5475,7 @@ __weak uint32_t HAL_GetTick(void)
  8102584:	f85d 7b04 	ldr.w	r7, [sp], #4
  8102588:	4770      	bx	lr
  810258a:	bf00      	nop
- 810258c:	10040880 	.word	0x10040880
+ 810258c:	10042248 	.word	0x10042248
 
 08102590 <HAL_Delay>:
   *       implementations in user file.
@@ -35353,9 +35353,9 @@ void MX_FATFS_Init(void)
 }
  810edcc:	bf00      	nop
  810edce:	bd80      	pop	{r7, pc}
- 810edd0:	10040888 	.word	0x10040888
+ 810edd0:	10042250 	.word	0x10042250
  810edd4:	08118638 	.word	0x08118638
- 810edd8:	10040884 	.word	0x10040884
+ 810edd8:	1004224c 	.word	0x1004224c
 
 0810eddc <get_fattime>:
   * @brief  Gets Time from RTC
@@ -35435,7 +35435,7 @@ __weak uint8_t BSP_SD_Init(void)
  810ee2e:	46bd      	mov	sp, r7
  810ee30:	bd80      	pop	{r7, pc}
  810ee32:	bf00      	nop
- 810ee34:	100406ec 	.word	0x100406ec
+ 810ee34:	100420b4 	.word	0x100420b4
 
 0810ee38 <BSP_SD_ReadBlocks_DMA>:
   * @param  ReadAddr: Address from where data is to be read
@@ -35477,7 +35477,7 @@ __weak uint8_t BSP_SD_ReadBlocks_DMA(uint32_t *pData, uint32_t ReadAddr, uint32_
  810ee62:	3718      	adds	r7, #24
  810ee64:	46bd      	mov	sp, r7
  810ee66:	bd80      	pop	{r7, pc}
- 810ee68:	100406ec 	.word	0x100406ec
+ 810ee68:	100420b4 	.word	0x100420b4
 
 0810ee6c <BSP_SD_WriteBlocks_DMA>:
   * @param  WriteAddr: Address from where data is to be written
@@ -35519,7 +35519,7 @@ __weak uint8_t BSP_SD_WriteBlocks_DMA(uint32_t *pData, uint32_t WriteAddr, uint3
  810ee96:	3718      	adds	r7, #24
  810ee98:	46bd      	mov	sp, r7
  810ee9a:	bd80      	pop	{r7, pc}
- 810ee9c:	100406ec 	.word	0x100406ec
+ 810ee9c:	100420b4 	.word	0x100420b4
 
 0810eea0 <BSP_SD_GetCardState>:
   *          This value can be one of the following values:
@@ -35543,7 +35543,7 @@ __weak uint8_t BSP_SD_GetCardState(void)
  810eeb6:	4618      	mov	r0, r3
  810eeb8:	bd80      	pop	{r7, pc}
  810eeba:	bf00      	nop
- 810eebc:	100406ec 	.word	0x100406ec
+ 810eebc:	100420b4 	.word	0x100420b4
 
 0810eec0 <BSP_SD_GetCardInfo>:
   * @brief  Get SD information about specific SD card.
@@ -35566,7 +35566,7 @@ __weak void BSP_SD_GetCardInfo(HAL_SD_CardInfoTypeDef *CardInfo)
  810eed2:	3708      	adds	r7, #8
  810eed4:	46bd      	mov	sp, r7
  810eed6:	bd80      	pop	{r7, pc}
- 810eed8:	100406ec 	.word	0x100406ec
+ 810eed8:	100420b4 	.word	0x100420b4
 
 0810eedc <HAL_SD_TxCpltCallback>:
   * @brief Tx Transfer completed callback
@@ -35969,7 +35969,7 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
  810f0c2:	46bd      	mov	sp, r7
  810f0c4:	bd80      	pop	{r7, pc}
  810f0c6:	bf00      	nop
- 810f0c8:	10040ac8 	.word	0x10040ac8
+ 810f0c8:	10042490 	.word	0x10042490
 
 0810f0cc <SD_write>:
   * @retval DRESULT: Operation result
@@ -36105,7 +36105,7 @@ DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
  810f16e:	46bd      	mov	sp, r7
  810f170:	bd80      	pop	{r7, pc}
  810f172:	bf00      	nop
- 810f174:	10040ac4 	.word	0x10040ac4
+ 810f174:	1004248c 	.word	0x1004248c
 
 0810f178 <SD_ioctl>:
   * @param  *buff: Buffer to send/receive control data
@@ -36241,7 +36241,7 @@ void BSP_SD_WriteCpltCallback(void)
  810f234:	46bd      	mov	sp, r7
  810f236:	f85d 7b04 	ldr.w	r7, [sp], #4
  810f23a:	4770      	bx	lr
- 810f23c:	10040ac4 	.word	0x10040ac4
+ 810f23c:	1004248c 	.word	0x1004248c
 
 0810f240 <BSP_SD_ReadCpltCallback>:
   * @brief Rx Transfer completed callbacks
@@ -36261,7 +36261,7 @@ void BSP_SD_ReadCpltCallback(void)
  810f24c:	46bd      	mov	sp, r7
  810f24e:	f85d 7b04 	ldr.w	r7, [sp], #4
  810f252:	4770      	bx	lr
- 810f254:	10040ac8 	.word	0x10040ac8
+ 810f254:	10042490 	.word	0x10042490
 
 0810f258 <ff_convert>:
 
@@ -36546,7 +36546,7 @@ DSTATUS disk_status (
  810f40e:	3710      	adds	r7, #16
  810f410:	46bd      	mov	sp, r7
  810f412:	bd80      	pop	{r7, pc}
- 810f414:	10041004 	.word	0x10041004
+ 810f414:	100429cc 	.word	0x100429cc
 
 0810f418 <disk_initialize>:
   * @retval DSTATUS: Operation status
@@ -36605,7 +36605,7 @@ DSTATUS disk_initialize (
  810f45e:	3710      	adds	r7, #16
  810f460:	46bd      	mov	sp, r7
  810f462:	bd80      	pop	{r7, pc}
- 810f464:	10041004 	.word	0x10041004
+ 810f464:	100429cc 	.word	0x100429cc
 
 0810f468 <disk_read>:
 	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
@@ -36649,7 +36649,7 @@ DSTATUS disk_initialize (
  810f49e:	46bd      	mov	sp, r7
  810f4a0:	bd90      	pop	{r4, r7, pc}
  810f4a2:	bf00      	nop
- 810f4a4:	10041004 	.word	0x10041004
+ 810f4a4:	100429cc 	.word	0x100429cc
 
 0810f4a8 <disk_write>:
 	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
@@ -36693,7 +36693,7 @@ DSTATUS disk_initialize (
  810f4de:	46bd      	mov	sp, r7
  810f4e0:	bd90      	pop	{r4, r7, pc}
  810f4e2:	bf00      	nop
- 810f4e4:	10041004 	.word	0x10041004
+ 810f4e4:	100429cc 	.word	0x100429cc
 
 0810f4e8 <disk_ioctl>:
 DRESULT disk_ioctl (
@@ -36735,7 +36735,7 @@ DRESULT disk_ioctl (
  810f51a:	3710      	adds	r7, #16
  810f51c:	46bd      	mov	sp, r7
  810f51e:	bd80      	pop	{r7, pc}
- 810f520:	10041004 	.word	0x10041004
+ 810f520:	100429cc 	.word	0x100429cc
 
 0810f524 <ld_word>:
 /* Load/Store multi-byte word in the FAT structure                       */
@@ -37506,7 +37506,7 @@ FRESULT chk_lock (	/* Check if the file can be accessed */
  810fa98:	f85d 7b04 	ldr.w	r7, [sp], #4
  810fa9c:	4770      	bx	lr
  810fa9e:	bf00      	nop
- 810faa0:	10040ad4 	.word	0x10040ad4
+ 810faa0:	1004249c 	.word	0x1004249c
 
 0810faa4 <enq_lock>:
 
@@ -37550,7 +37550,7 @@ int enq_lock (void)	/* Check if an entry is available for a new object */
  810fadc:	f85d 7b04 	ldr.w	r7, [sp], #4
  810fae0:	4770      	bx	lr
  810fae2:	bf00      	nop
- 810fae4:	10040ad4 	.word	0x10040ad4
+ 810fae4:	1004249c 	.word	0x1004249c
 
 0810fae8 <inc_lock>:
 static
@@ -37725,7 +37725,7 @@ UINT inc_lock (	/* Increment object open counter and returns its index (0:Intern
  810fbf8:	46bd      	mov	sp, r7
  810fbfa:	f85d 7b04 	ldr.w	r7, [sp], #4
  810fbfe:	4770      	bx	lr
- 810fc00:	10040ad4 	.word	0x10040ad4
+ 810fc00:	1004249c 	.word	0x1004249c
 
 0810fc04 <dec_lock>:
 
@@ -37806,7 +37806,7 @@ FRESULT dec_lock (	/* Decrement object open counter */
  810fc70:	f85d 7b04 	ldr.w	r7, [sp], #4
  810fc74:	4770      	bx	lr
  810fc76:	bf00      	nop
- 810fc78:	10040ad4 	.word	0x10040ad4
+ 810fc78:	1004249c 	.word	0x1004249c
 
 0810fc7c <clear_lock>:
 
@@ -37855,7 +37855,7 @@ void clear_lock (	/* Clear lock entries of the volume */
  810fcb8:	46bd      	mov	sp, r7
  810fcba:	f85d 7b04 	ldr.w	r7, [sp], #4
  810fcbe:	4770      	bx	lr
- 810fcc0:	10040ad4 	.word	0x10040ad4
+ 810fcc0:	1004249c 	.word	0x1004249c
 
 0810fcc4 <sync_window>:
 #if !_FS_READONLY
@@ -44167,7 +44167,7 @@ FRESULT find_volume (	/* FR_OK(0): successful, !=0: any error occurred */
  8112536:	230d      	movs	r3, #13
  8112538:	e204      	b.n	8112944 <find_volume+0x698>
  811253a:	bf00      	nop
- 811253c:	10040acc 	.word	0x10040acc
+ 811253c:	10042494 	.word	0x10042494
  8112540:	7ffffffd 	.word	0x7ffffffd
 		fs->n_fatent = nclst + 2;
  8112544:	6bfb      	ldr	r3, [r7, #60]	@ 0x3c
@@ -44742,9 +44742,9 @@ FRESULT find_volume (	/* FR_OK(0): successful, !=0: any error occurred */
  811294e:	bf00      	nop
  8112950:	41615252 	.word	0x41615252
  8112954:	61417272 	.word	0x61417272
- 8112958:	10040ad0 	.word	0x10040ad0
- 811295c:	10040e04 	.word	0x10040e04
- 8112960:	10040ba4 	.word	0x10040ba4
+ 8112958:	10042498 	.word	0x10042498
+ 811295c:	100427cc 	.word	0x100427cc
+ 8112960:	1004256c 	.word	0x1004256c
 
 08112964 <validate>:
 static
@@ -44924,7 +44924,7 @@ FRESULT f_mount (
  8112a52:	3720      	adds	r7, #32
  8112a54:	46bd      	mov	sp, r7
  8112a56:	bd80      	pop	{r7, pc}
- 8112a58:	10040acc 	.word	0x10040acc
+ 8112a58:	10042494 	.word	0x10042494
 
 08112a5c <f_open>:
 FRESULT f_open (
@@ -47980,7 +47980,7 @@ FRESULT f_expand (
  8114294:	d906      	bls.n	81142a4 <f_mkfs+0x2a8>
  8114296:	230e      	movs	r3, #14
  8114298:	f000 bf8c 	b.w	81151b4 <f_mkfs+0x11b8>
- 811429c:	10040acc 	.word	0x10040acc
+ 811429c:	10042494 	.word	0x10042494
  81142a0:	7ffffffd 	.word	0x7ffffffd
 
 		szb_bit = (n_clst + 7) / 8;						/* Size of allocation bitmap */
@@ -49942,7 +49942,7 @@ uint8_t FATFS_LinkDriverEx(const Diskio_drvTypeDef *drv, char *path, uint8_t lun
  811524c:	f85d 7b04 	ldr.w	r7, [sp], #4
  8115250:	4770      	bx	lr
  8115252:	bf00      	nop
- 8115254:	10041004 	.word	0x10041004
+ 8115254:	100429cc 	.word	0x100429cc
 
 08115258 <FATFS_LinkDriver>:
   * @param  drv: pointer to the disk IO Driver structure
@@ -50104,7 +50104,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  81153bc:	08116e1f 	.word	0x08116e1f
  81153c0:	08116e57 	.word	0x08116e57
  81153c4:	08116e7b 	.word	0x08116e7b
- 81153c8:	10041010 	.word	0x10041010
+ 81153c8:	100429d8 	.word	0x100429d8
 
 081153cc <stdio_exit_handler>:
  81153cc:	4a02      	ldr	r2, [pc, #8]	@ (81153d8 <stdio_exit_handler+0xc>)
@@ -50139,9 +50139,9 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8115410:	f001 bc92 	b.w	8116d38 <_fflush_r>
  8115414:	bd10      	pop	{r4, pc}
  8115416:	bf00      	nop
- 8115418:	10041010 	.word	0x10041010
- 811541c:	10041078 	.word	0x10041078
- 8115420:	100410e0 	.word	0x100410e0
+ 8115418:	100429d8 	.word	0x100429d8
+ 811541c:	10042a40 	.word	0x10042a40
+ 8115420:	10042aa8 	.word	0x10042aa8
 
 08115424 <global_stdio_init.part.0>:
  8115424:	b510      	push	{r4, lr}
@@ -50162,21 +50162,21 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811544a:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
  811544e:	2112      	movs	r1, #18
  8115450:	f7ff bf86 	b.w	8115360 <std>
- 8115454:	10041148 	.word	0x10041148
- 8115458:	10041010 	.word	0x10041010
+ 8115454:	10042b10 	.word	0x10042b10
+ 8115458:	100429d8 	.word	0x100429d8
  811545c:	081153cd 	.word	0x081153cd
 
 08115460 <__sfp_lock_acquire>:
  8115460:	4801      	ldr	r0, [pc, #4]	@ (8115468 <__sfp_lock_acquire+0x8>)
  8115462:	f000 bdab 	b.w	8115fbc <__retarget_lock_acquire_recursive>
  8115466:	bf00      	nop
- 8115468:	1004114f 	.word	0x1004114f
+ 8115468:	10042b17 	.word	0x10042b17
 
 0811546c <__sfp_lock_release>:
  811546c:	4801      	ldr	r0, [pc, #4]	@ (8115474 <__sfp_lock_release+0x8>)
  811546e:	f000 bda7 	b.w	8115fc0 <__retarget_lock_release_recursive>
  8115472:	bf00      	nop
- 8115474:	1004114f 	.word	0x1004114f
+ 8115474:	10042b17 	.word	0x10042b17
 
 08115478 <__sinit>:
  8115478:	b510      	push	{r4, lr}
@@ -50196,7 +50196,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811549c:	e7f2      	b.n	8115484 <__sinit+0xc>
  811549e:	bf00      	nop
  81154a0:	081153e5 	.word	0x081153e5
- 81154a4:	10041148 	.word	0x10041148
+ 81154a4:	10042b10 	.word	0x10042b10
 
 081154a8 <_fwalk_sglue>:
  81154a8:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -51224,13 +51224,13 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8115f94:	4801      	ldr	r0, [pc, #4]	@ (8115f9c <__tz_lock+0x8>)
  8115f96:	f000 b810 	b.w	8115fba <__retarget_lock_acquire>
  8115f9a:	bf00      	nop
- 8115f9c:	1004114c 	.word	0x1004114c
+ 8115f9c:	10042b14 	.word	0x10042b14
 
 08115fa0 <__tz_unlock>:
  8115fa0:	4801      	ldr	r0, [pc, #4]	@ (8115fa8 <__tz_unlock+0x8>)
  8115fa2:	f000 b80c 	b.w	8115fbe <__retarget_lock_release>
  8115fa6:	bf00      	nop
- 8115fa8:	1004114c 	.word	0x1004114c
+ 8115fa8:	10042b14 	.word	0x10042b14
 
 08115fac <_tzset_unlocked>:
  8115fac:	4b01      	ldr	r3, [pc, #4]	@ (8115fb4 <_tzset_unlocked+0x8>)
@@ -51534,16 +51534,16 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  81162c0:	e6ae      	b.n	8116020 <_tzset_unlocked_r+0x5c>
  81162c2:	bf00      	nop
  81162c4:	08118b7f 	.word	0x08118b7f
- 81162c8:	10041150 	.word	0x10041150
- 81162cc:	1004116c 	.word	0x1004116c
+ 81162c8:	10042b18 	.word	0x10042b18
+ 81162cc:	10042b34 	.word	0x10042b34
  81162d0:	08118b82 	.word	0x08118b82
- 81162d4:	10041170 	.word	0x10041170
+ 81162d4:	10042b38 	.word	0x10042b38
  81162d8:	100400d0 	.word	0x100400d0
  81162dc:	08118d33 	.word	0x08118d33
- 81162e0:	10041160 	.word	0x10041160
+ 81162e0:	10042b28 	.word	0x10042b28
  81162e4:	08118b86 	.word	0x08118b86
  81162e8:	08118bbb 	.word	0x08118bbb
- 81162ec:	10041154 	.word	0x10041154
+ 81162ec:	10042b1c 	.word	0x10042b1c
  81162f0:	08118b99 	.word	0x08118b99
  81162f4:	08118ba7 	.word	0x08118ba7
  81162f8:	08118bba 	.word	0x08118bba
@@ -51641,10 +51641,10 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  81163f2:	2301      	movne	r3, #1
  81163f4:	6013      	str	r3, [r2, #0]
  81163f6:	e613      	b.n	8116020 <_tzset_unlocked_r+0x5c>
- 81163f8:	10041154 	.word	0x10041154
+ 81163f8:	10042b1c 	.word	0x10042b1c
  81163fc:	08118b99 	.word	0x08118b99
- 8116400:	10041160 	.word	0x10041160
- 8116404:	10041170 	.word	0x10041170
+ 8116400:	10042b28 	.word	0x10042b28
+ 8116404:	10042b38 	.word	0x10042b38
 
 08116408 <strcpy>:
  8116408:	4603      	mov	r3, r0
@@ -52080,7 +52080,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811680e:	d1f2      	bne.n	81167f6 <sbrk_aligned+0x22>
  8116810:	e7ef      	b.n	81167f2 <sbrk_aligned+0x1e>
  8116812:	bf00      	nop
- 8116814:	10041174 	.word	0x10041174
+ 8116814:	10042b3c 	.word	0x10042b3c
 
 08116818 <_malloc_r>:
  8116818:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -52190,7 +52190,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811690e:	6005      	str	r5, [r0, #0]
  8116910:	e7d6      	b.n	81168c0 <_malloc_r+0xa8>
  8116912:	bf00      	nop
- 8116914:	10041178 	.word	0x10041178
+ 8116914:	10042b40 	.word	0x10042b40
 
 08116918 <_printf_common>:
  8116918:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -52683,13 +52683,13 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8116d88:	4801      	ldr	r0, [pc, #4]	@ (8116d90 <__malloc_lock+0x8>)
  8116d8a:	f7ff b917 	b.w	8115fbc <__retarget_lock_acquire_recursive>
  8116d8e:	bf00      	nop
- 8116d90:	1004114e 	.word	0x1004114e
+ 8116d90:	10042b16 	.word	0x10042b16
 
 08116d94 <__malloc_unlock>:
  8116d94:	4801      	ldr	r0, [pc, #4]	@ (8116d9c <__malloc_unlock+0x8>)
  8116d96:	f7ff b913 	b.w	8115fc0 <__retarget_lock_release_recursive>
  8116d9a:	bf00      	nop
- 8116d9c:	1004114e 	.word	0x1004114e
+ 8116d9c:	10042b16 	.word	0x10042b16
 
 08116da0 <siscanf>:
  8116da0:	b40e      	push	{r1, r2, r3}
@@ -53005,7 +53005,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811706a:	b103      	cbz	r3, 811706e <_lseek_r+0x1e>
  811706c:	6023      	str	r3, [r4, #0]
  811706e:	bd38      	pop	{r3, r4, r5, pc}
- 8117070:	1004117c 	.word	0x1004117c
+ 8117070:	10042b44 	.word	0x10042b44
 
 08117074 <_read_r>:
  8117074:	b538      	push	{r3, r4, r5, lr}
@@ -53023,7 +53023,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811708e:	b103      	cbz	r3, 8117092 <_read_r+0x1e>
  8117090:	6023      	str	r3, [r4, #0]
  8117092:	bd38      	pop	{r3, r4, r5, pc}
- 8117094:	1004117c 	.word	0x1004117c
+ 8117094:	10042b44 	.word	0x10042b44
 
 08117098 <_sbrk_r>:
  8117098:	b538      	push	{r3, r4, r5, lr}
@@ -53039,7 +53039,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  81170ae:	b103      	cbz	r3, 81170b2 <_sbrk_r+0x1a>
  81170b0:	6023      	str	r3, [r4, #0]
  81170b2:	bd38      	pop	{r3, r4, r5, pc}
- 81170b4:	1004117c 	.word	0x1004117c
+ 81170b4:	10042b44 	.word	0x10042b44
 
 081170b8 <__gettzinfo>:
  81170b8:	4800      	ldr	r0, [pc, #0]	@ (81170bc <__gettzinfo+0x4>)
@@ -53062,7 +53062,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  81170da:	b103      	cbz	r3, 81170de <_write_r+0x1e>
  81170dc:	6023      	str	r3, [r4, #0]
  81170de:	bd38      	pop	{r3, r4, r5, pc}
- 81170e0:	1004117c 	.word	0x1004117c
+ 81170e0:	10042b44 	.word	0x10042b44
 
 081170e4 <__tzcalc_limits>:
  81170e4:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -53201,7 +53201,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8117262:	b103      	cbz	r3, 8117266 <_close_r+0x1a>
  8117264:	6023      	str	r3, [r4, #0]
  8117266:	bd38      	pop	{r3, r4, r5, pc}
- 8117268:	1004117c 	.word	0x1004117c
+ 8117268:	10042b44 	.word	0x10042b44
 
 0811726c <abort>:
  811726c:	b508      	push	{r3, lr}
@@ -53215,13 +53215,13 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811727c:	4801      	ldr	r0, [pc, #4]	@ (8117284 <__env_lock+0x8>)
  811727e:	f7fe be9d 	b.w	8115fbc <__retarget_lock_acquire_recursive>
  8117282:	bf00      	nop
- 8117284:	1004114d 	.word	0x1004114d
+ 8117284:	10042b15 	.word	0x10042b15
 
 08117288 <__env_unlock>:
  8117288:	4801      	ldr	r0, [pc, #4]	@ (8117290 <__env_unlock+0x8>)
  811728a:	f7fe be99 	b.w	8115fc0 <__retarget_lock_release_recursive>
  811728e:	bf00      	nop
- 8117290:	1004114d 	.word	0x1004114d
+ 8117290:	10042b15 	.word	0x10042b15
 
 08117294 <_free_r>:
  8117294:	b538      	push	{r3, r4, r5, lr}
@@ -53292,7 +53292,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811731e:	e7ca      	b.n	81172b6 <_free_r+0x22>
  8117320:	bd38      	pop	{r3, r4, r5, pc}
  8117322:	bf00      	nop
- 8117324:	10041178 	.word	0x10041178
+ 8117324:	10042b40 	.word	0x10042b40
 
 08117328 <_sungetc_r>:
  8117328:	b538      	push	{r3, r4, r5, lr}
@@ -54708,7 +54708,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811803a:	b103      	cbz	r3, 811803e <_isatty_r+0x1a>
  811803c:	6023      	str	r3, [r4, #0]
  811803e:	bd38      	pop	{r3, r4, r5, pc}
- 8118040:	1004117c 	.word	0x1004117c
+ 8118040:	10042b44 	.word	0x10042b44
 
 08118044 <_kill_r>:
  8118044:	b538      	push	{r3, r4, r5, lr}
@@ -54726,7 +54726,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  811805e:	6023      	str	r3, [r4, #0]
  8118060:	bd38      	pop	{r3, r4, r5, pc}
  8118062:	bf00      	nop
- 8118064:	1004117c 	.word	0x1004117c
+ 8118064:	10042b44 	.word	0x10042b44
 
 08118068 <_getpid_r>:
  8118068:	f7e9 be94 	b.w	8101d94 <_getpid>
@@ -54747,7 +54747,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8118086:	6023      	str	r3, [r4, #0]
  8118088:	bd38      	pop	{r3, r4, r5, pc}
  811808a:	bf00      	nop
- 811808c:	1004117c 	.word	0x1004117c
+ 811808c:	10042b44 	.word	0x10042b44
 
 08118090 <_init>:
  8118090:	b5f8      	push	{r3, r4, r5, r6, r7, lr}

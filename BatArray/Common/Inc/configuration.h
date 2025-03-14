@@ -8,7 +8,7 @@
 #ifndef INC_CONFIGURATION_H_
 #define INC_CONFIGURATION_H_
 
-#define TESTING
+//#define TESTING
 
 #ifdef TESTING
 
