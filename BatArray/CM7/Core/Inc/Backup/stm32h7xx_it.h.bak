@@ -58,7 +58,6 @@ void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
 void RCC_IRQHandler(void);
-void EXTI15_10_IRQHandler(void);
 void HRTIM1_Master_IRQHandler(void);
 void HSEM1_IRQHandler(void);
 /* USER CODE BEGIN EFP */

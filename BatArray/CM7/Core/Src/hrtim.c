@@ -27,19 +27,16 @@
 HRTIM_HandleTypeDef hhrtim;
 
 /* HRTIM init function */
-void MX_HRTIM_Init ( void )
+void MX_HRTIM_Init(void)
 {
 
   /* USER CODE BEGIN HRTIM_Init 0 */
 
   /* USER CODE END HRTIM_Init 0 */
 
-  HRTIM_ADCTriggerCfgTypeDef pADCTriggerCfg =
-    { 0 };
-  HRTIM_TimeBaseCfgTypeDef pTimeBaseCfg =
-    { 0 };
-  HRTIM_TimerCfgTypeDef pTimerCfg =
-    { 0 };
+  HRTIM_ADCTriggerCfgTypeDef pADCTriggerCfg = {0};
+  HRTIM_TimeBaseCfgTypeDef pTimeBaseCfg = {0};
+  HRTIM_TimerCfgTypeDef pTimerCfg = {0};
 
   /* USER CODE BEGIN HRTIM_Init 1 */
 
@@ -47,23 +44,23 @@ void MX_HRTIM_Init ( void )
   hhrtim.Instance = HRTIM1;
   hhrtim.Init.HRTIMInterruptResquests = HRTIM_IT_NONE;
   hhrtim.Init.SyncOptions = HRTIM_SYNCOPTION_NONE;
-  if ( HAL_HRTIM_Init (&hhrtim) != HAL_OK )
+  if (HAL_HRTIM_Init(&hhrtim) != HAL_OK)
   {
-    Error_Handler ();
+    Error_Handler();
   }
   pADCTriggerCfg.UpdateSource = HRTIM_ADCTRIGGERUPDATE_MASTER;
   pADCTriggerCfg.Trigger = HRTIM_ADCTRIGGEREVENT13_NONE;
-  if ( HAL_HRTIM_ADCTriggerConfig (&hhrtim, HRTIM_ADCTRIGGER_1, &pADCTriggerCfg) != HAL_OK )
+  if (HAL_HRTIM_ADCTriggerConfig(&hhrtim, HRTIM_ADCTRIGGER_1, &pADCTriggerCfg) != HAL_OK)
   {
-    Error_Handler ();
+    Error_Handler();
   }
-  pTimeBaseCfg.Period = 1600; // max = 1425 (280KHz)
+  pTimeBaseCfg.Period = 1600;
   pTimeBaseCfg.RepetitionCounter = 0x00;
   pTimeBaseCfg.PrescalerRatio = HRTIM_PRESCALERRATIO_DIV1;
   pTimeBaseCfg.Mode = HRTIM_MODE_CONTINUOUS;
-  if ( HAL_HRTIM_TimeBaseConfig (&hhrtim, HRTIM_TIMERINDEX_MASTER, &pTimeBaseCfg) != HAL_OK )
+  if (HAL_HRTIM_TimeBaseConfig(&hhrtim, HRTIM_TIMERINDEX_MASTER, &pTimeBaseCfg) != HAL_OK)
   {
-    Error_Handler ();
+    Error_Handler();
   }
   pTimerCfg.InterruptRequests = HRTIM_MASTER_IT_NONE;
   pTimerCfg.DMARequests = HRTIM_MASTER_DMA_NONE;
@@ -78,9 +75,9 @@ void MX_HRTIM_Init ( void )
   pTimerCfg.UpdateGating = HRTIM_UPDATEGATING_INDEPENDENT;
   pTimerCfg.BurstMode = HRTIM_TIMERBURSTMODE_MAINTAINCLOCK;
   pTimerCfg.RepetitionUpdate = HRTIM_UPDATEONREPETITION_DISABLED;
-  if ( HAL_HRTIM_WaveformTimerConfig (&hhrtim, HRTIM_TIMERINDEX_MASTER, &pTimerCfg) != HAL_OK )
+  if (HAL_HRTIM_WaveformTimerConfig(&hhrtim, HRTIM_TIMERINDEX_MASTER, &pTimerCfg) != HAL_OK)
   {
-    Error_Handler ();
+    Error_Handler();
   }
   /* USER CODE BEGIN HRTIM_Init 2 */
 
@@ -88,54 +85,53 @@ void MX_HRTIM_Init ( void )
 
 }
 
-void HAL_HRTIM_MspInit ( HRTIM_HandleTypeDef *hrtimHandle )
+void HAL_HRTIM_MspInit(HRTIM_HandleTypeDef* hrtimHandle)
 {
 
-  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct =
-    { 0 };
-  if ( hrtimHandle->Instance == HRTIM1 )
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+  if(hrtimHandle->Instance==HRTIM1)
   {
-    /* USER CODE BEGIN HRTIM1_MspInit 0 */
+  /* USER CODE BEGIN HRTIM1_MspInit 0 */
 
-    /* USER CODE END HRTIM1_MspInit 0 */
+  /* USER CODE END HRTIM1_MspInit 0 */
 
-    /** Initializes the peripherals clock
-     */
+  /** Initializes the peripherals clock
+  */
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_HRTIM1;
     PeriphClkInitStruct.Hrtim1ClockSelection = RCC_HRTIM1CLK_CPUCLK;
-    if ( HAL_RCCEx_PeriphCLKConfig (&PeriphClkInitStruct) != HAL_OK )
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
     {
-      Error_Handler ();
+      Error_Handler();
     }
 
     /* HRTIM1 clock enable */
     __HAL_RCC_HRTIM1_CLK_ENABLE();
 
     /* HRTIM1 interrupt Init */
-    HAL_NVIC_SetPriority (HRTIM1_Master_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ (HRTIM1_Master_IRQn);
-    /* USER CODE BEGIN HRTIM1_MspInit 1 */
+    HAL_NVIC_SetPriority(HRTIM1_Master_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(HRTIM1_Master_IRQn);
+  /* USER CODE BEGIN HRTIM1_MspInit 1 */
 
-    /* USER CODE END HRTIM1_MspInit 1 */
+  /* USER CODE END HRTIM1_MspInit 1 */
   }
 }
 
-void HAL_HRTIM_MspDeInit ( HRTIM_HandleTypeDef *hrtimHandle )
+void HAL_HRTIM_MspDeInit(HRTIM_HandleTypeDef* hrtimHandle)
 {
 
-  if ( hrtimHandle->Instance == HRTIM1 )
+  if(hrtimHandle->Instance==HRTIM1)
   {
-    /* USER CODE BEGIN HRTIM1_MspDeInit 0 */
+  /* USER CODE BEGIN HRTIM1_MspDeInit 0 */
 
-    /* USER CODE END HRTIM1_MspDeInit 0 */
+  /* USER CODE END HRTIM1_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_HRTIM1_CLK_DISABLE();
 
     /* HRTIM1 interrupt Deinit */
-    HAL_NVIC_DisableIRQ (HRTIM1_Master_IRQn);
-    /* USER CODE BEGIN HRTIM1_MspDeInit 1 */
+    HAL_NVIC_DisableIRQ(HRTIM1_Master_IRQn);
+  /* USER CODE BEGIN HRTIM1_MspDeInit 1 */
 
-    /* USER CODE END HRTIM1_MspDeInit 1 */
+  /* USER CODE END HRTIM1_MspDeInit 1 */
   }
 }
 

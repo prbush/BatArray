@@ -8,7 +8,9 @@
 ../Core/Src/stm32h7xx_it.c:178:6:PendSV_Handler	4	static
 ../Core/Src/stm32h7xx_it.c:191:6:SysTick_Handler	8	static
 ../Core/Src/stm32h7xx_it.c:212:6:DMA1_Stream0_IRQHandler	8	static
-../Core/Src/stm32h7xx_it.c:226:6:UART4_IRQHandler	8	static
-../Core/Src/stm32h7xx_it.c:240:6:SDMMC2_IRQHandler	8	static
-../Core/Src/stm32h7xx_it.c:254:6:HSEM2_IRQHandler	8	static
-../Core/Src/stm32h7xx_it.c:271:6:HAL_HSEM_FreeCallback	16	static
+../Core/Src/stm32h7xx_it.c:226:6:EXTI15_10_IRQHandler	8	static
+../Core/Src/stm32h7xx_it.c:240:6:UART4_IRQHandler	8	static
+../Core/Src/stm32h7xx_it.c:254:6:SDMMC2_IRQHandler	8	static
+../Core/Src/stm32h7xx_it.c:268:6:HSEM2_IRQHandler	8	static
+../Core/Src/stm32h7xx_it.c:285:6:HAL_HSEM_FreeCallback	16	static
+../Core/Src/stm32h7xx_it.c:310:6:HAL_GPIO_EXTI_Callback	16	static

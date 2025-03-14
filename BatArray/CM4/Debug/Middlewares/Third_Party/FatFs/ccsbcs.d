@@ -37,9 +37,6 @@ Middlewares/Third_Party/FatFs/ccsbcs.o: \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd_ex.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.h \
- ../Core/Inc/stm32h7xx_nucleo_conf.h \
- /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo_errno.h \
  ../FATFS/Target/bsp_driver_sd.h ../FATFS/Target/fatfs_platform.h
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/option/../ff.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Middlewares/Third_Party/FatFs/src/option/../integer.h:
@@ -79,8 +76,5 @@ Middlewares/Third_Party/FatFs/ccsbcs.o: \
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd_ex.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
-/Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.h:
-../Core/Inc/stm32h7xx_nucleo_conf.h:
-/Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo_errno.h:
 ../FATFS/Target/bsp_driver_sd.h:
 ../FATFS/Target/fatfs_platform.h:

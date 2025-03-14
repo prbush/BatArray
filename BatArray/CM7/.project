@@ -120,16 +120,6 @@
 			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_spi.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_spi_ex.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c</locationURI>
-		</link>
-		<link>
 			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_tim.c</name>
 			<type>1</type>
 			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c</locationURI>
@@ -138,31 +128,6 @@
 			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_tim_ex.c</name>
 			<type>1</type>
 			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_uart.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_uart_ex.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_usart.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_usart.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_usart_ex.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_usart_ex.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

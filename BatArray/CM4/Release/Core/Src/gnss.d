@@ -35,9 +35,6 @@ Core/Src/gnss.o: ../Core/Src/gnss.c ../Core/Inc/gnss.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd_ex.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.h \
- ../Core/Inc/stm32h7xx_nucleo_conf.h \
- /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo_errno.h \
  ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/u_ubx_protocol.h \
  ../Core/Inc/u_error_common.h ../Core/Inc/gpio.h
 ../Core/Inc/gnss.h:
@@ -79,9 +76,6 @@ Core/Src/gnss.o: ../Core/Src/gnss.c ../Core/Inc/gnss.h \
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd_ex.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 /Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
-/Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.h:
-../Core/Inc/stm32h7xx_nucleo_conf.h:
-/Users/philbush/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo_errno.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/main.h:
 ../Core/Inc/u_ubx_protocol.h:

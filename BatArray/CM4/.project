@@ -95,6 +95,16 @@
 			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c</locationURI>
 		</link>
 		<link>
+			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_mmc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mmc.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_mmc_ex.c</name>
+			<type>1</type>
+			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mmc_ex.c</locationURI>
+		</link>
+		<link>
 			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_pwr.c</name>
 			<type>1</type>
 			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c</locationURI>
@@ -145,16 +155,6 @@
 			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_usart.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_usart.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_usart_ex.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_usart_ex.c</locationURI>
-		</link>
-		<link>
 			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_ll_delayblock.c</name>
 			<type>1</type>
 			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_delayblock.c</locationURI>
@@ -163,11 +163,6 @@
 			<name>Drivers/STM32H7xx_HAL_Driver/stm32h7xx_ll_sdmmc.c</name>
 			<type>1</type>
 			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c</locationURI>
-		</link>
-		<link>
-			<name>Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c</name>
-			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/STM32Cube/Repository/STM32Cube_FW_H7_V1.11.2/Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/Third_Party/FatFs/ccsbcs.c</name>

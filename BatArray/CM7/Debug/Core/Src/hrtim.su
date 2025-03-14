@@ -1,3 +1,3 @@
 ../Core/Src/hrtim.c:30:6:MX_HRTIM_Init	120	static
-../Core/Src/hrtim.c:91:6:HAL_HRTIM_MspInit	216	static
-../Core/Src/hrtim.c:123:6:HAL_HRTIM_MspDeInit	16	static
+../Core/Src/hrtim.c:88:6:HAL_HRTIM_MspInit	216	static
+../Core/Src/hrtim.c:119:6:HAL_HRTIM_MspDeInit	16	static

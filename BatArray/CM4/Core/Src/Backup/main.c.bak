@@ -22,7 +22,6 @@
 #include "fatfs.h"
 #include "sdmmc.h"
 #include "usart.h"
-#include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -30,6 +29,7 @@
 #include "configuration.h"
 #include "gnss.h"
 #include "time.h"
+#include "gpio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -116,12 +116,13 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
   MX_DMA_Init();
   MX_UART4_Init();
   MX_SDMMC2_SD_Init();
   MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
+
+  MX_GPIO_Init ();
 
   gnss_init ();
 
@@ -151,24 +152,6 @@ int main(void)
   {
     Error_Handler ();
   }
-
-//  start_time = HAL_GetTick ();
-//  elapsed_time = 0;
-//
-//  while ( elapsed_time < gnss_sync_timeout )
-//  {
-//    if ( gnss_sync () )
-//    {
-//      break;
-//    }
-//
-//    elapsed_time = HAL_GetTick () - start_time;
-//  }
-//
-//  if ( elapsed_time >= gnss_sync_timeout )
-//  {
-//    Error_Handler ();
-//  }
 
   start_time = HAL_GetTick ();
   elapsed_time = 0;

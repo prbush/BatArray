@@ -56,6 +56,7 @@ uint32_t semaphore_irq_counter = 0;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern SD_HandleTypeDef hsd2;
 extern DMA_HandleTypeDef hdma_uart4_rx;
 extern UART_HandleTypeDef huart4;
 /* USER CODE BEGIN EV */
@@ -220,6 +221,20 @@ void DMA1_Stream0_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles EXTI line[15:10] interrupts.
+  */
+void EXTI15_10_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+
+  /* USER CODE END EXTI15_10_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
+  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+
+  /* USER CODE END EXTI15_10_IRQn 1 */
+}
+
+/**
   * @brief This function handles UART4 global interrupt.
   */
 void UART4_IRQHandler(void)
@@ -231,6 +246,20 @@ void UART4_IRQHandler(void)
   /* USER CODE BEGIN UART4_IRQn 1 */
 
   /* USER CODE END UART4_IRQn 1 */
+}
+
+/**
+  * @brief This function handles SDMMC2 global interrupt.
+  */
+void SDMMC2_IRQHandler(void)
+{
+  /* USER CODE BEGIN SDMMC2_IRQn 0 */
+
+  /* USER CODE END SDMMC2_IRQn 0 */
+  HAL_SD_IRQHandler(&hsd2);
+  /* USER CODE BEGIN SDMMC2_IRQn 1 */
+
+  /* USER CODE END SDMMC2_IRQn 1 */
 }
 
 /**
@@ -275,6 +304,14 @@ void HAL_HSEM_FreeCallback ( uint32_t SemMask )
     buffer_select = 1;
 
     HAL_HSEM_ActivateNotification (__HAL_HSEM_SEMID_TO_MASK(BUFFER_2_FULL_SEMAPHORE));
+  }
+}
+
+void HAL_GPIO_EXTI_Callback ( uint16_t GPIO_Pin )
+{
+  if ( GPIO_Pin == USER_BUTTON_Pin )
+  {
+    done = true;
   }
 }
 /* USER CODE END 1 */

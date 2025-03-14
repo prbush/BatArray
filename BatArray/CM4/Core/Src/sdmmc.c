@@ -87,7 +87,7 @@ void HAL_SD_MspInit(SD_HandleTypeDef* sdHandle)
     PB3 (JTDO/TRACESWO)     ------> SDMMC2_D2
     PB4 (NJTRST)     ------> SDMMC2_D3
     */
-    GPIO_InitStruct.Pin = SD_D0_Pin|SD_D1_Pin|SD_D2_Pin|SD_D3_Pin;
+    GPIO_InitStruct.Pin = GPIO_PIN_14|SD_D1_Pin|SD_D2_Pin|SD_D3_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -129,7 +129,7 @@ void HAL_SD_MspDeInit(SD_HandleTypeDef* sdHandle)
     PB3 (JTDO/TRACESWO)     ------> SDMMC2_D2
     PB4 (NJTRST)     ------> SDMMC2_D3
     */
-    HAL_GPIO_DeInit(GPIOB, SD_D0_Pin|SD_D1_Pin|SD_D2_Pin|SD_D3_Pin);
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_14|SD_D1_Pin|SD_D2_Pin|SD_D3_Pin);
 
     HAL_GPIO_DeInit(GPIOD, SD_CK_Pin|SD_CMD_Pin);
 
