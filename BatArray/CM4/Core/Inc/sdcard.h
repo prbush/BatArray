@@ -25,7 +25,7 @@ typedef struct
 } ad7606c_data_buffer;
 
 bool sdcard_mount ( void );
-void sdcard_shutdown ( void );
+bool sdcard_shutdown ( bool early_termination );
 bool sdcard_allocate_files ( void );
 bool sdcard_write_to_file ( void );
 bool sdcard_write_start_stop_times ( struct tm *start, struct tm *stop );
