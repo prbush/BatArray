@@ -17,7 +17,7 @@ FIL start_stop_times_file;
 uint32_t writes_counter = 0;
 uint32_t file_array_index = 0;
 uint32_t buffer_select = 0;
-__attribute__((section(".ADC_BUFFER_sec")))                                 ad7606c_data_buffer data_buffer;
+__attribute__((section(".ADC_BUFFER_sec")))                                   ad7606c_data_buffer data_buffer;
 
 uint64_t seek_point = 0;
 uint32_t num_file_writes = 0;
@@ -93,9 +93,6 @@ bool sdcard_shutdown ( bool early_termination )
   FRESULT res;
   char filename_buffer[32];
 
-  // Deinit SDMMC2
-  (void) HAL_SD_DeInit (&hsd2);
-
   if ( early_termination )
   {
     // Truncate the current file
@@ -123,7 +120,7 @@ bool sdcard_shutdown ( bool early_termination )
       }
 
       // Files are "unlinked" (deleted) by filename
-      snprintf (filename_buffer, 32, "hour_%d.raw", file_array_index);
+      snprintf (filename_buffer, 32, "hour_%d.raw", (int) file_array_index);
 
       res = f_unlink (&(filename_buffer[0]));
       if ( res != FR_OK )
@@ -132,6 +129,9 @@ bool sdcard_shutdown ( bool early_termination )
       }
     }
   }
+
+  // Deinit SDMMC2
+  (void) HAL_SD_DeInit (&hsd2);
 
   return true;
 }
